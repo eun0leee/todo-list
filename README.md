@@ -2,6 +2,8 @@
 
 Fastcampus 3차과제, window98 Todo-list 프로젝트입니다.
 
+[Demo site](https://fanciful-cuchufli-828222.netlify.app/)
+
 # Features
 
 - [x] widgets : current time
