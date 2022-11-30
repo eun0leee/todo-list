@@ -22,6 +22,7 @@ async function getServerTodos() {
     const getjson = await res.json();
     if (getjson.length !== 0) {
       getjson.forEach((item) => printTodos(item));
+      toDos = getjson;
     } else {
       console.log("Type your first Todo");
     }
@@ -42,12 +43,10 @@ formEl.addEventListener("submit", async (event) => {
   event.preventDefault();
   let newTodo = {
     title: inputEl.value,
-    order: Date.now(),
   };
   inputEl.value = "";
   toDos.push(newTodo);
-  printTodos(newTodo); //browser output
-  await addServerTodos(newTodo);
+  addServerTodos(newTodo);
 });
 
 //Server
@@ -58,16 +57,14 @@ async function addServerTodos(newTodo) {
       headers: HEADERS,
       body: JSON.stringify({
         title: newTodo.title,
-        order: newTodo.order,
+        done: false,
       }),
     });
+    const addjson = await res.json();
+    printTodos(addjson);
   } catch (error) {
     console.log(error);
   }
-
-  // const addjson = await res.json();
-  // console.log(addjson);
-  // return addjson;
 }
 
 //////////////////////////// OUTPUT ///////////////////////////////
@@ -75,20 +72,85 @@ async function addServerTodos(newTodo) {
 function printTodos(newTodo) {
   const li = document.createElement("li");
   li.id = newTodo.id;
-
   const todoText = document.createElement("span");
+  todoText.classList.add("todoText");
   todoText.innerText = newTodo.title;
+
+  //incompleted and completed
+  const checkBtn = document.createElement("input");
+  checkBtn.type = "checkbox";
+  checkBtn.addEventListener("click", completed);
+  function completed() {
+    todoText.classList.toggle("completedText");
+    newTodo.done = checkBtn.checked;
+    console.log(newTodo);
+  }
+
+  //Lately updated date
+  const todoUpdatedDate = document.createElement("span");
+  const date = new Date(`${newTodo.updatedAt}`);
+
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  todoUpdatedDate.innerText = `(${year}/${month}/${day}/${month} ${hours}:${minutes})`;
 
   const editBtn = document.createElement("button");
   editBtn.innerText = "✏️";
-  // editBtn.addEventListener("click", editTodos);
+  editBtn.addEventListener("click", editTodos);
 
   const deleteBtn = document.createElement("button");
   deleteBtn.innerText = "X";
   deleteBtn.addEventListener("click", deleteTodos);
 
-  li.append(todoText, editBtn, deleteBtn);
+  li.append(checkBtn, todoText, todoUpdatedDate, editBtn, deleteBtn);
   ulEl.append(li);
+}
+
+//////////////////////////// EDIT ///////////////////////////////
+//Browser
+function editTodos(event) {
+  const editBtn = (event.target.innerText = "✔️");
+  console.log(event);
+  const li = event.target.parentElement;
+  let todoText = li.querySelector(".todoText");
+  const editInput = document.createElement("input");
+
+  li.insertBefore(editInput, todoText);
+  todoText.classList.add("hidden");
+  editInput.value = todoText.textContent;
+
+  editInput.addEventListener("keypress", editEnd);
+  function editEnd(e, editBtn) {
+    if (e.key === "Enter") {
+      todoText.textContent = editInput.value;
+      editInput.classList.add("hidden");
+      todoText.classList.remove("hidden");
+      editServerTodos(li.id, todoText.textContent);
+    }
+  }
+}
+
+//Server
+async function editServerTodos(id, todoText) {
+  try {
+    const res = await fetch(`${apiUrl}/${id}`, {
+      method: "PUT",
+      headers: HEADERS,
+      body: JSON.stringify({
+        title: todoText,
+        done: false,
+      }),
+    });
+    const editjson = await res.json();
+    console.log(editjson);
+    return editjson;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 //////////////////////////// DELETE ///////////////////////////////

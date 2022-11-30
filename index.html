@@ -11,25 +11,54 @@
 
     <!-- js -->
     <script defer src="./js/main.js"></script>
+    <script defer src="./js/clock.js"></script>
+    <script defer src="./js/location-and-weather.js"></script>
 
     <title>my todo list</title>
   </head>
 
   <body>
     <div class="container">
-      <div class="titlebar">
-        <strong class="titlebar__title">Start to do!</strong>
-        <button disabled class="titlebar__btn">X</button>
+      <div class="background-icon">
+        <span>My Computer</span>
+        <span>Network<br />Neighborhood</span>
+        <span>Inbox</span>
+        <span>Recycle Bin</span>
+        <span>The Microsoft<br />Network</span>
+        <span>My Briefcase</span>
       </div>
       <div class="workspace">
-        <main class="todo-area">
+        <header class="titlebar">
+          <strong class="titlebar__title">Start to do!</strong>
+          <button disabled class="titlebar__btn">X</button>
+        </header>
+        <div class="greeting">
+          Welcome to
+          <span>Windows</span><span>95</span>
+        </div>
+        <main>
           <!-- Todo -->
-          <form class="todo__form">
-            <input class="todo__input" type="text" placeholder="Add your new Todo" required />
-            <input class="submit__btn" type="submit" value="+" />
-          </form>
-          <ul class="todo__list"></ul>
+          <div class="todo-area">
+            <form class="todo__form">
+              <input class="todo__input" type="text" placeholder="Add your new Todo" required />
+              <input class="submit__btn" type="submit" value="+" />
+            </form>
+            <ul class="todo__list"></ul>
+          </div>
+          <div class="widgets">
+            <!-- 현재 위치 및 날씨-->
+            <h3 class="location">
+              <span></span>
+              <span></span>
+            </h3>
+          </div>
         </main>
+      </div>
+      <div class="footer">
+        <span>Start</span>
+        <span>Welcome</span>
+        <!-- 현재 시간 -->
+        <h2 class="clock">00:00:00</h2>
       </div>
     </div>
   </body>
