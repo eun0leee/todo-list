@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- css -->
+    <link rel="stylesheet" href="./css/reset-css.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+
+    <!-- js -->
+    <script defer src="./js/main.js"></script>
+
+    <title>my todo list</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="titlebar">
+        <strong class="titlebar__title">Start to do!</strong>
+        <button disabled class="titlebar__btn">X</button>
+      </div>
+      <div class="workspace">
+        <main class="todo-area">
+          <!-- Todo -->
+          <form class="todo__form">
+            <input class="todo__input" type="text" placeholder="Add your new Todo" required />
+            <input class="submit__btn" type="submit" value="+" />
+          </form>
+          <ul class="todo__list"></ul>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
