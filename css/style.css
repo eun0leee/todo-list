@@ -217,6 +217,10 @@ body {
   margin-bottom: 80px;
 }
 
+.widgets .widgets-btns button {
+  cursor: pointer;
+}
+
 .widgets .widgets-position .item {
   display: flex;
   justify-content: center;
