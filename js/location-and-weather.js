@@ -8,8 +8,12 @@ function success(obj) {
 }
 
 function getWeather(lat, lon) {
-  const currentLocationEl = document.querySelector(".location span:first-child");
-  const weatherEl = document.querySelector(".location span:last-child");
+  const currentLocationEl = document.querySelector(".location");
+  const weatherEl = document.querySelector(".weather");
+  const locationText = document.createElement("span");
+  locationText.className = "text";
+  const weatherText = document.createElement("span");
+  weatherText.className = "text";
 
   const apiKey = "3c0979e48a1d50e080c610667f291919";
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
@@ -20,8 +24,14 @@ function getWeather(lat, lon) {
       const currentLocation = data.name;
       const weather = data.weather[0].main;
 
-      currentLocationEl.innerText = currentLocation;
-      weatherEl.innerText = weather;
+      locationText.innerText = currentLocation;
+      weatherText.innerText = weather;
+
+      currentLocationEl.append(locationText);
+      weatherEl.append(weatherText);
+
+      console.log(currentLocationEl);
+      console.log(weatherEl);
     });
 }
 

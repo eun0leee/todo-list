@@ -199,7 +199,8 @@ body {
 }
 
 /* widgets */
-.widgets button {
+.widgets button,
+.item {
   width: 180px;
   height: 30px;
 
@@ -216,8 +217,17 @@ body {
   margin-bottom: 80px;
 }
 
-.widgets .location {
+.widgets .widgets-position .item {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.widgets .widgets-position .item + .item {
+  margin-top: 10px;
+}
+
+.widgets .widgets-position img {
+  width: 20px;
+  margin-right: 10px;
 }
