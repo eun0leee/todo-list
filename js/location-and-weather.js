@@ -1,4 +1,3 @@
-//인수로 성공, 에러 함수를 꼭 받아야 한다.
 navigator.geolocation.getCurrentPosition(success, error);
 
 function success(obj) {
@@ -15,7 +14,6 @@ function getWeather(lat, lon) {
   const apiKey = "3c0979e48a1d50e080c610667f291919";
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
 
-  //fetch해서, 응답.json 파일을, data로 받고, 그걸 콘솔 출력 해보자!
   fetch(apiUrl)
     .then((res) => res.json())
     .then((data) => {

@@ -8,57 +8,93 @@
     <!-- css -->
     <link rel="stylesheet" href="./css/reset-css.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
 
     <!-- js -->
-    <script defer src="./js/main.js"></script>
+    <script defer type="module" src="./js/main.js"></script>
     <script defer src="./js/clock.js"></script>
     <script defer src="./js/location-and-weather.js"></script>
 
+    <!-- favicon -->
+    <link rel="icon" type="image/png" href="./assets/icon_start.png" />
     <title>my todo list</title>
   </head>
 
   <body>
     <div class="container">
-      <div class="background-icon">
-        <span>My Computer</span>
-        <span>Network<br />Neighborhood</span>
-        <span>Inbox</span>
-        <span>Recycle Bin</span>
-        <span>The Microsoft<br />Network</span>
-        <span>My Briefcase</span>
+      <!------------------ BACKGROUND ------------------>
+
+      <!-- icons -->
+      <div class="background-icons">
+        <button class="icon">
+          <img src="./assets/icon_my.png" alt="computer icon" />
+          <span>My Computer</span>
+        </button>
+        <button class="icon">
+          <img src="./assets/icon_network.png" alt="network icon" />
+          <span>Network<br />Neighborhood</span>
+        </button>
+        <button class="icon">
+          <img src="./assets/icon_YouTube.png" alt="youtube icon" />
+          <span>YouTube</span>
+        </button>
+        <button class="icon">
+          <img src="./assets/icon_bin.png" alt="bin icon" />
+          <span>Recycle Bin</span>
+        </button>
+        <button class="icon">
+          <img src="./assets/icon_Starbucks.png" alt="Starbucks icon" />
+          <span>Starbucks</span>
+        </button>
+        <button class="icon iconTodo">
+          <img src="./assets/icon_Todo.png" alt="todo list icon" />
+          <span>Start Todo</span>
+        </button>
       </div>
-      <div class="workspace">
-        <header class="titlebar">
-          <strong class="titlebar__title">Start to do!</strong>
-          <button disabled class="titlebar__btn">X</button>
-        </header>
-        <div class="greeting">
-          Welcome to
-          <span>Windows</span><span>95</span>
+
+      <!-- task-bar -->
+      <div class="taskbar">
+        <div class="task-btns">
+          <button class="startbtn">
+            <img src="./assets/icon_start.png" alt="windows icon" />
+            Start
+          </button>
+          <span class="todobtn">Start Todo</span>
         </div>
-        <main>
+        <span class="task-clock">00:00:00</span>
+      </div>
+
+      <!------------------ MODAL ------------------>
+      <div class="modal">
+        <!-- titlebar -->
+        <header class="titlebar">
+          <h1 class="titlebar__title">Start to do!</h1>
+          <button class="titlebar__btn">✖</button>
+        </header>
+        <!-- greeting -->
+        <h2 class="greeting">Welcome!</h2>
+        <!-- workspace -->
+        <main class="workspace">
           <!-- Todo -->
-          <div class="todo-area">
+          <div class="todo">
             <form class="todo__form">
-              <input class="todo__input" type="text" placeholder="Add your new Todo" required />
-              <input class="submit__btn" type="submit" value="+" />
+              <input class="todo__input" type="text" placeholder="⌨️..." />
+              <input class="todo__input-submit" type="submit" value="+" />
             </form>
             <ul class="todo__list"></ul>
           </div>
           <div class="widgets">
-            <!-- 현재 위치 및 날씨-->
-            <h3 class="location">
-              <span></span>
-              <span></span>
-            </h3>
+            <div class="widgets-btns">
+              <button>To do</button>
+              <button>Done</button>
+              <button>Delete</button>
+            </div>
+            <div class="location">
+              <button>위치</button>
+              <button>날씨</button>
+            </div>
           </div>
         </main>
-      </div>
-      <div class="footer">
-        <span>Start</span>
-        <span>Welcome</span>
-        <!-- 현재 시간 -->
-        <h2 class="clock">00:00:00</h2>
       </div>
     </div>
   </body>

@@ -1,4 +1,4 @@
-const clockEl = document.querySelector("h2");
+const clockEl = document.querySelector(".task-clock");
 
 function clock() {
   //String의 s는 대문자로!

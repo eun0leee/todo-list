@@ -1,7 +1,223 @@
+/***************** COMMON *****************/
+button,
+input,
+textarea {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+  font-family: "DotGothic16", sans-serif;
+  letter-spacing: 0.9px;
+}
+
+body {
+  background-color: #008081;
+  font-family: "DotGothic16", sans-serif;
+  letter-spacing: 1.2px;
+}
+
 .hidden {
   display: none;
 }
 
-.completedText {
-  text-decoration: line-through;
+/***************** BACKGROUND *****************/
+/* icons */
+.background-icons {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 35px 20px;
+
+  width: fit-content;
+  height: 90vh;
+  margin: 10px;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 110px;
+  min-height: 65px;
+
+  color: rgb(230, 230, 230);
+  text-align: center;
+  font-size: 15px;
+}
+
+.icon img {
+  width: 40px;
+  margin-bottom: 7px;
+  cursor: pointer;
+}
+
+.icon span {
+  cursor: pointer;
+}
+
+/* task-bar */
+.taskbar {
+  display: flex;
+  justify-content: space-between;
+
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+
+  width: 100vw;
+  height: 50px;
+  padding: 5px;
+
+  border-top: 2px solid #fff;
+  box-shadow: 0px -2px 2px 0px rgba(49, 49, 49, 0.3);
+  background-color: #c0c0c0;
+}
+
+.task-btns {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.task-btns .startbtn {
+  display: flex;
+  align-items: center;
+
+  width: 90px;
+
+  border: 3px outset #fff;
+}
+
+.task-btns .startbtn img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.task-btns .startbtn,
+.todobtn {
+  height: 38px;
+  padding-left: 5px;
+
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.task-btns .todobtn {
+  display: flex;
+  align-items: center;
+
+  width: 180px;
+  border: 3px inset #fff;
+  background-color: rgb(234, 231, 231);
+
+  text-align: left;
+}
+
+.task-clock {
+  padding: 8px 20px;
+
+  border: 3px inset #fff;
+}
+
+/***************** MODAL *****************/
+.modal {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  min-width: 700px;
+  max-height: 800px;
+
+  border-top: 4px solid #eceffa;
+  border-left: 4px solid #eceffa;
+  box-shadow: 2px 2px 3px #010303;
+  background-color: #c0c0c0;
+}
+
+/* titlebar */
+.titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #010081;
+
+  padding: 5px;
+
+  color: #fefeff;
+  font-weight: 700;
+}
+
+.titlebar__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding-bottom: 2px;
+
+  border-top: 2px solid #eceffa;
+  border-left: 2px solid #eceffa;
+  box-shadow: 2px 2px 1px #010303;
+  background-color: #c0c0c0;
+
+  color: #000;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+/* greeting */
+.greeting {
+  margin: 20px 20px 30px 25px;
+  font-size: 50px;
+  font-weight: 700;
+  text-align: left;
+}
+
+/***************** WORKSPACE *****************/
+.workspace {
+  display: flex;
+  gap: 20px;
+  margin: 0 20px 30px 25px;
+}
+
+/* todo */
+.todo {
+  min-width: 450px;
+  max-height: 400px;
+  padding: 20px;
+  overflow: auto;
+
+  border: 3px inset #fff;
+  background-color: #ffffde;
+}
+
+.todo__input {
+  background-color: #fff;
+}
+
+/* widgets */
+.widgets button {
+  width: 180px;
+  height: 30px;
+
+  border-top: 2px solid #eceffa;
+  border-left: 2px solid #eceffa;
+  box-shadow: 2px 2px 1px #010303;
+}
+
+.widgets .widgets-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-bottom: 80px;
+}
+
+.widgets .location {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
