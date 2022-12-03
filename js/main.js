@@ -41,13 +41,13 @@ export async function addServerTodos(title) {
 }
 
 //EDIT
-export async function editServerTodos(id, text, done = false, num = 0) {
+export async function editServerTodos(id, title, done = false, num = 0) {
   try {
     const res = await fetch(`${apiUrl}/${id}`, {
       method: "PUT",
       headers: HEADERS,
       body: JSON.stringify({
-        title: text,
+        title: title,
         done: done,
         order: num,
       }),
@@ -85,7 +85,7 @@ const formEl = document.querySelector(".todo__form");
 const inputEl = document.querySelector(".todo__input");
 const ulEl = document.querySelector(".todo__list");
 
-function printTodos(todosData) {
+function renderTodos(todosData) {
   const li = document.createElement("li");
   li.id = todosData.id;
 
@@ -108,12 +108,35 @@ function printTodos(todosData) {
   ulEl.append(li);
 }
 
+//Lately updated date
+// const todoUpdatedDate = document.createElement("span");
+// const date = new Date(`${newTodo.updatedAt}`);
+
+// const year = date.getFullYear();
+// const month = date.getMonth() + 1;
+// const day = date.getDate();
+// const hours = date.getHours();
+// const minutes = date.getMinutes();
+
+// todoUpdatedDate.innerText = `(${year}/${month}/${day}/${month} ${hours}:${minutes})`;
+
+// const editBtn = document.createElement("button");
+// editBtn.innerText = "✏️";
+// editBtn.addEventListener("click", editTodos);
+
+// const deleteBtn = document.createElement("button");
+// deleteBtn.innerText = "X";
+// deleteBtn.addEventListener("click", deleteTodos);
+
+// li.append(checkBtn, todoText, todoUpdatedDate, editBtn, deleteBtn);
+// ulEl.append(li);
+
 /////////////////  이벤트리스너 두번째 인자 ///////////////////
 //조회
 //간단히 할 다른 방법 없는지
 let getData = await getServerTodos();
 if (getData.length !== 0) {
-  getData.forEach((item) => printTodos(item));
+  getData.forEach((item) => renderTodos(item));
 } else {
   console.log("Type your first Todo");
 }
@@ -124,7 +147,7 @@ formEl.addEventListener("submit", async (event) => {
   let newTodo = inputEl.value;
   inputEl.value = "";
   let getData = await addServerTodos(newTodo);
-  printTodos(getData);
+  renderTodos(getData);
 });
 
 //삭제
@@ -150,7 +173,6 @@ function editTodos(e) {
   </form>`;
 
   const editInput = li.querySelector(".todotext_edit_Input");
-  console.log(editInput.parentElement);
 
   //수정중 엔터
   editInput.parentElement.addEventListener("submit", (e) => {
@@ -160,19 +182,18 @@ function editTodos(e) {
   });
 
   //수정중 ok 버튼
-  const okBtn = li.querySelector(".todotext_edit_ok");
-  okBtn.addEventListener("click", (e) => {
+  const editOkBtn = li.querySelector(".todotext_edit_ok");
+  editOkBtn.addEventListener("click", (e) => {
     editCompleted(e, editInput.value);
     editServerTodos(li.id, editInput.value);
   });
 
   //수정중 cancel 버튼
-  const cancelBtn = li.querySelector(".todotext_edit_cancel");
-  cancelBtn.addEventListener("click", (e) => editCompleted(e, todoText.innerText));
+  const editcancelBtn = li.querySelector(".todotext_edit_cancel");
+  editcancelBtn.addEventListener("click", (e) => editCompleted(e, todoText.innerText));
 
   function editCompleted(e, text) {
     const li = e.target.closest("li");
     li.innerHTML = `<span class="todotext">${text}</span>${editBtn.outerHTML}${deleteBtn.outerHTML}`;
-    console.log(li);
   }
 }
