@@ -7,17 +7,16 @@ const HEADERS = {
   username: USERNAME,
 };
 
-//////////////// API ////////////////
+//////////////////// API ///////////////////////
 
 //LOAD
-export async function getTodos() {
+export async function getServerTodos() {
   try {
     const res = await fetch(apiUrl, {
       method: "GET",
       headers: HEADERS,
     });
     const json = await res.json();
-    console.log(json);
     return json;
   } catch (error) {
     console.log(error);
@@ -25,7 +24,7 @@ export async function getTodos() {
 }
 
 //INPUT
-export async function addTodos(title) {
+export async function addServerTodos(title) {
   try {
     const res = await fetch(apiUrl, {
       method: "POST",
@@ -42,13 +41,13 @@ export async function addTodos(title) {
 }
 
 //EDIT
-export async function editTodos(id, title, done, num) {
+export async function editServerTodos(id, text, done = false, num = 0) {
   try {
     const res = await fetch(`${apiUrl}/${id}`, {
       method: "PUT",
       headers: HEADERS,
       body: JSON.stringify({
-        title: title,
+        title: text,
         done: done,
         order: num,
       }),
@@ -61,7 +60,7 @@ export async function editTodos(id, title, done, num) {
 }
 
 //DELETE
-export async function deleteTodos(id) {
+export async function deleteServerTodos(id) {
   try {
     const res = await fetch(`${apiUrl}/${id}`, {
       method: "DELETE",
@@ -74,7 +73,7 @@ export async function deleteTodos(id) {
   }
 }
 
-////////////////////  render  ///////////////////////
+//////////////////// RENDER ///////////////////////
 
 // addTodos("hello-2");
 
@@ -82,32 +81,37 @@ export async function deleteTodos(id) {
 
 // deleteTodos("ayRiutxTJjIRVxb33WFF");
 
+const formEl = document.querySelector(".todo__form");
+const inputEl = document.querySelector(".todo__input");
+const ulEl = document.querySelector(".todo__list");
+
 function printTodos(todosData) {
-  const spanEl = document.createElement("span");
-  spanEl.className = "todoText";
-  spanEl.innerText = todosData.title;
-
-  const editBtn = document.createElement("button");
-  editBtn.innerText = "✏️";
-
-  const deleteBtn = document.createElement("button");
-  deleteBtn.innerText = "❌";
-
   const li = document.createElement("li");
   li.id = todosData.id;
+
+  const spanEl = document.createElement("span");
+  spanEl.className = "todotext";
+  spanEl.innerText = todosData.title;
+
+  const deleteBtn = document.createElement("button");
+  deleteBtn.className = "deletebtn";
+  deleteBtn.innerText = "❌";
+  deleteBtn.addEventListener("click", deleteTodos);
+
+  const editBtn = document.createElement("button");
+  editBtn.className = "editbtn";
+  editBtn.innerText = "✏️";
+  editBtn.addEventListener("click", editTodos);
+
   li.append(spanEl, editBtn, deleteBtn);
 
-  const ulEl = document.querySelector(".todo__list");
   ulEl.append(li);
 }
 
-const formEl = document.querySelector(".todo__form");
-const inputEl = document.querySelector(".todo__input");
-
-////////////////////  이벤트리스너 ///////////////////////
+/////////////////  이벤트리스너 두번째 인자 ///////////////////
 //조회
 //간단히 할 다른 방법 없는지
-let getData = await getTodos();
+let getData = await getServerTodos();
 if (getData.length !== 0) {
   getData.forEach((item) => printTodos(item));
 } else {
@@ -119,24 +123,56 @@ formEl.addEventListener("submit", async (event) => {
   event.preventDefault();
   let newTodo = inputEl.value;
   inputEl.value = "";
-  let getData = await addTodos(newTodo);
+  let getData = await addServerTodos(newTodo);
   printTodos(getData);
 });
 
 //삭제
+function deleteTodos(e) {
+  const li = e.target.parentElement;
+  li.remove();
+  deleteServerTodos(li.id);
+}
 
-////////////////////  모달창  ///////////////////////
-// const iconTodo = document.querySelector(".iconTodo");
-// const pop = document.getElementById("pop");
-// iconTodo.addEventListener("dblclick", ViewLayer);
+//수정
+function editTodos(e) {
+  //기존 요소 불러오기
+  const li = e.target.parentElement;
+  const todoText = li.querySelector(".todotext");
+  const editBtn = li.querySelector(".editbtn");
+  const deleteBtn = li.querySelector(".deletebtn");
 
-// function ViewLayer() {
-//   pop.style.display = "block";
-// }
+  //수정 폼 열기
+  li.innerHTML = `<form action="GET" class="todotext_edit">
+  <input class="todotext_edit_Input" type="text" value="${todoText.innerText}">
+  <input class="todotext_edit_ok" type="submit" value="OK">
+  <button class="todotext_edit_cancel">cancel</button>
+  </form>`;
 
-// const closeBtn = document.querySelector(".titlebar__btn");
-// closeBtn.addEventListener("click", closemodal);
+  const editInput = li.querySelector(".todotext_edit_Input");
+  console.log(editInput.parentElement);
 
-// function closemodal() {
-//   pop.style.display = "none";
-// }
+  //수정중 엔터
+  editInput.parentElement.addEventListener("submit", (e) => {
+    e.preventDefault();
+    editCompleted(e, editInput.value);
+    editServerTodos(li.id, editInput.value);
+  });
+
+  //수정중 ok 버튼
+  const okBtn = li.querySelector(".todotext_edit_ok");
+  okBtn.addEventListener("click", (e) => {
+    editCompleted(e, editInput.value);
+    editServerTodos(li.id, editInput.value);
+  });
+
+  //수정중 cancel 버튼
+  const cancelBtn = li.querySelector(".todotext_edit_cancel");
+  cancelBtn.addEventListener("click", (e) => editCompleted(e, todoText.innerText));
+
+  function editCompleted(e, text) {
+    const li = e.target.closest("li");
+    li.innerHTML = `<span class="todotext">${text}</span>${editBtn.outerHTML}${deleteBtn.outerHTML}`;
+    console.log(li);
+  }
+}

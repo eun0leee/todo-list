@@ -29,9 +29,6 @@ function getWeather(lat, lon) {
 
       currentLocationEl.append(locationText);
       weatherEl.append(weatherText);
-
-      console.log(currentLocationEl);
-      console.log(weatherEl);
     });
 }
 
