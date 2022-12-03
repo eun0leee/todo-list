@@ -109,27 +109,17 @@ function renderTodos(todosData) {
 }
 
 //Lately updated date
-// const todoUpdatedDate = document.createElement("span");
 // const date = new Date(`${newTodo.updatedAt}`);
-
 // const year = date.getFullYear();
 // const month = date.getMonth() + 1;
 // const day = date.getDate();
 // const hours = date.getHours();
 // const minutes = date.getMinutes();
 
+// const todoUpdatedDate = document.createElement("span");
 // todoUpdatedDate.innerText = `(${year}/${month}/${day}/${month} ${hours}:${minutes})`;
 
-// const editBtn = document.createElement("button");
-// editBtn.innerText = "✏️";
-// editBtn.addEventListener("click", editTodos);
-
-// const deleteBtn = document.createElement("button");
-// deleteBtn.innerText = "X";
-// deleteBtn.addEventListener("click", deleteTodos);
-
-// li.append(checkBtn, todoText, todoUpdatedDate, editBtn, deleteBtn);
-// ulEl.append(li);
+// li.append(todoUpdatedDate);
 
 /////////////////  이벤트리스너 두번째 인자 ///////////////////
 //조회
@@ -142,8 +132,8 @@ if (getData.length !== 0) {
 }
 
 //입력
-formEl.addEventListener("submit", async (event) => {
-  event.preventDefault();
+formEl.addEventListener("submit", async (e) => {
+  e.preventDefault();
   let newTodo = inputEl.value;
   inputEl.value = "";
   let getData = await addServerTodos(newTodo);
