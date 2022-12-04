@@ -67,84 +67,91 @@ export async function deleteServerTodos(id) {
       headers: HEADERS,
     });
     const json = await res.json();
+    console.log(json);
     return json;
   } catch (error) {
     console.log(error);
   }
 }
 
-//////////////////// RENDER ///////////////////////
-
 // addTodos("hello-2");
 
 // editTodos("yS7C2yPs11oFwM8KdChd", "hi-edit-03", true, 0);
 
-// deleteTodos("ayRiutxTJjIRVxb33WFF");
-
+//////////////////// RENDER ///////////////////////
 const formEl = document.querySelector(".todo__form");
 const inputEl = document.querySelector(".todo__input");
 const ulEl = document.querySelector(".todo__list");
 
-function renderTodos(todosData) {
+function renderTodos(todosServerData) {
   const li = document.createElement("li");
-  li.id = todosData.id;
+  li.id = todosServerData.id;
 
   const spanEl = document.createElement("span");
   spanEl.className = "todotext";
-  spanEl.innerText = todosData.title;
-
+  spanEl.innerText = todosServerData.title;
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "deletebtn";
   deleteBtn.innerText = "❌";
   deleteBtn.addEventListener("click", deleteTodos);
-
   const editBtn = document.createElement("button");
   editBtn.className = "editbtn";
   editBtn.innerText = "✏️";
   editBtn.addEventListener("click", editTodos);
 
-  li.append(spanEl, editBtn, deleteBtn);
+  //Lately updated date
+  const date = new Date(`${todosServerData.updatedAt}`);
+  const year = String(date.getFullYear()).substr(2);
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const updatedAt = document.createElement("span");
+  updatedAt.innerText = `(${year}/${month}/${day} ${hours}:${minutes})`;
 
+  li.append(spanEl, updatedAt, editBtn, deleteBtn);
   ulEl.append(li);
 }
-
-//Lately updated date
-// const date = new Date(`${newTodo.updatedAt}`);
-// const year = date.getFullYear();
-// const month = date.getMonth() + 1;
-// const day = date.getDate();
-// const hours = date.getHours();
-// const minutes = date.getMinutes();
-
-// const todoUpdatedDate = document.createElement("span");
-// todoUpdatedDate.innerText = `(${year}/${month}/${day}/${month} ${hours}:${minutes})`;
-
-// li.append(todoUpdatedDate);
 
 /////////////////  이벤트리스너 두번째 인자 ///////////////////
 //조회
 //간단히 할 다른 방법 없는지
-let getData = await getServerTodos();
-if (getData.length !== 0) {
-  getData.forEach((item) => renderTodos(item));
-} else {
-  console.log("Type your first Todo");
-}
+(async function getTodos() {
+  try {
+    console.log("조회됨!");
+    let getData = await getServerTodos();
+    if (getData.length !== 0) {
+      getData.forEach((item) => renderTodos(item));
+    } else {
+      console.log("Type your first Todo");
+    }
+  } catch (error) {
+    console.log(error);
+  }
+})();
 
 //입력
 formEl.addEventListener("submit", async (e) => {
   e.preventDefault();
   let newTodo = inputEl.value;
   inputEl.value = "";
-  let getData = await addServerTodos(newTodo);
-  renderTodos(getData);
+  try {
+    let getData = await addServerTodos(newTodo);
+    renderTodos(getData);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 //삭제
-function deleteTodos(e) {
-  const li = e.target.parentElement;
-  li.remove();
-  deleteServerTodos(li.id);
+async function deleteTodos(e) {
+  try {
+    const li = e.target.parentElement;
+    li.remove();
+    await deleteServerTodos(li.id);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 //수정
@@ -164,26 +171,23 @@ function editTodos(e) {
 
   const editInput = li.querySelector(".todotext_edit_Input");
 
-  //수정중 엔터
+  //수정중 엔터 또는 ok 버튼
   editInput.parentElement.addEventListener("submit", (e) => {
     e.preventDefault();
     editCompleted(e, editInput.value);
-    editServerTodos(li.id, editInput.value);
-  });
-
-  //수정중 ok 버튼
-  const editOkBtn = li.querySelector(".todotext_edit_ok");
-  editOkBtn.addEventListener("click", (e) => {
-    editCompleted(e, editInput.value);
-    editServerTodos(li.id, editInput.value);
   });
 
   //수정중 cancel 버튼
   const editcancelBtn = li.querySelector(".todotext_edit_cancel");
   editcancelBtn.addEventListener("click", (e) => editCompleted(e, todoText.innerText));
 
-  function editCompleted(e, text) {
+  async function editCompleted(e, text) {
     const li = e.target.closest("li");
     li.innerHTML = `<span class="todotext">${text}</span>${editBtn.outerHTML}${deleteBtn.outerHTML}`;
+    if (text !== todoText.innerText) {
+      li.remove();
+      const getData = await editServerTodos(li.id, text);
+      renderTodos(getData);
+    }
   }
 }
