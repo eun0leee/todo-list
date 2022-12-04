@@ -198,6 +198,10 @@ body {
   background-color: #fff;
 }
 
+.text__deco {
+  text-decoration: line-through;
+}
+
 /* widgets */
 .widgets button,
 .item {
