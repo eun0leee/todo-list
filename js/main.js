@@ -17,7 +17,6 @@ export async function getServerTodos() {
       headers: HEADERS,
     });
     const json = await res.json();
-    console.log(json);
     return json;
   } catch (error) {
     console.log(error);
@@ -36,7 +35,6 @@ export async function addServerTodos(title, order) {
       }),
     });
     const json = await res.json();
-    console.log(json);
     return json;
   } catch (error) {
     console.log(error);
@@ -56,7 +54,6 @@ export async function editServerTodos(id, title, done = false, order = 0) {
       }),
     });
     const json = await res.json();
-    console.log(json);
     return json;
   } catch (error) {
     console.log(error);
@@ -71,7 +68,6 @@ export async function deleteServerTodos(id) {
       headers: HEADERS,
     });
     const json = await res.json();
-    console.log(json);
     return json;
   } catch (error) {
     console.log(error);
@@ -135,8 +131,11 @@ function renderTodos(todosServerData) {
 (async function getTodos() {
   try {
     let getData = await getServerTodos();
-    if (getData.length !== 0) {
-      getData.forEach((item) => renderTodos(item));
+    let res = getData.sort(function (a, b) {
+      return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
+    });
+    if (res.length !== 0) {
+      res.forEach((item) => renderTodos(item));
     } else {
       //화면에 나타내기
       console.log("Type your first Todo");
