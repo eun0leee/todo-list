@@ -13,6 +13,7 @@
     <script defer type="module" src="./js/main.js"></script>
     <script defer src="./js/clock.js"></script>
     <script defer src="./js/location-and-weather.js"></script>
+    <script defer src="./js/username.js"></script>
 
     <!-- favicon -->
     <link rel="icon" type="image/png" href="./assets/icon_start.png" />
@@ -20,82 +21,91 @@
   </head>
 
   <body>
-    <div class="container">
-      <!------------------ BACKGROUND ------------------>
+    <!------------------ BACKGROUND ------------------>
 
-      <!-- icons -->
-      <div class="background-icons">
-        <button class="icon">
-          <img src="./assets/icon_my.png" alt="computer icon" />
-          <span>My Computer</span>
+    <!-- icons -->
+    <div class="background-icons">
+      <button class="icon">
+        <img src="./assets/icon_my.png" alt="computer icon" />
+        <span>My Computer</span>
+      </button>
+      <button class="icon">
+        <img src="./assets/icon_network.png" alt="network icon" />
+        <span>Network<br />Neighborhood</span>
+      </button>
+      <button class="icon">
+        <img src="./assets/icon_YouTube.png" alt="youtube icon" />
+        <span>YouTube</span>
+      </button>
+      <button class="icon">
+        <img src="./assets/icon_bin.png" alt="bin icon" />
+        <span>Recycle Bin</span>
+      </button>
+      <button class="icon">
+        <img src="./assets/icon_Starbucks.png" alt="Starbucks icon" />
+        <span>Starbucks</span>
+      </button>
+      <button class="icon iconTodo">
+        <img src="./assets/icon_Todo.png" alt="todo list icon" />
+        <span>Start Todo</span>
+      </button>
+    </div>
+
+    <!-- task-bar -->
+    <div class="taskbar">
+      <div class="task-btns">
+        <button class="startbtn">
+          <img src="./assets/icon_start.png" alt="windows icon" />
+          Start
         </button>
-        <button class="icon">
-          <img src="./assets/icon_network.png" alt="network icon" />
-          <span>Network<br />Neighborhood</span>
-        </button>
-        <button class="icon">
-          <img src="./assets/icon_YouTube.png" alt="youtube icon" />
-          <span>YouTube</span>
-        </button>
-        <button class="icon">
-          <img src="./assets/icon_bin.png" alt="bin icon" />
-          <span>Recycle Bin</span>
-        </button>
-        <button class="icon">
-          <img src="./assets/icon_Starbucks.png" alt="Starbucks icon" />
-          <span>Starbucks</span>
-        </button>
-        <button class="icon iconTodo">
-          <img src="./assets/icon_Todo.png" alt="todo list icon" />
-          <span>Start Todo</span>
-        </button>
+        <span class="todobtn">Start Todo</span>
       </div>
+      <span class="task-clock">00:00:00</span>
+    </div>
 
-      <!-- task-bar -->
-      <div class="taskbar">
-        <div class="task-btns">
-          <button class="startbtn">
-            <img src="./assets/icon_start.png" alt="windows icon" />
-            Start
-          </button>
-          <span class="todobtn">Start Todo</span>
+    <!------------------ MODAL ------------------>
+    <div class="modal">
+      <!-- titlebar -->
+      <header class="titlebar">
+        <h1 class="titlebar__title">Start Todo</h1>
+        <button class="titlebar__btn">✖</button>
+      </header>
+      <!-- greeting -->
+      <div class="greeting">
+        <!-- signinout -->
+        <div class="signinout">
+          <h2 class="message">Welcome!</h2>
+          <form action="" class="form hidden">
+            <input required maxlength="10" type="text" placeholder="What is your name?" autofocus />
+          </form>
+          <h2 class="username hidden"></h2>
+          <button class="signoutbtn hidden">sign out</button>
         </div>
-        <span class="task-clock">00:00:00</span>
+        <img src="./assets/gif_cat.gif" alt="walking cat" />
       </div>
-
-      <!------------------ MODAL ------------------>
-      <div class="modal">
-        <!-- titlebar -->
-        <header class="titlebar">
-          <h1 class="titlebar__title">Start Todo</h1>
-          <button class="titlebar__btn">✖</button>
-        </header>
-        <!-- greeting -->
-        <h2 class="greeting">Welcome!</h2>
-        <!-- workspace -->
-        <main class="workspace">
-          <!-- todo -->
-          <div class="todo">
-            <form class="todo__form">
-              <input class="input" type="text" placeholder="type..." autofocus />
-              <input class="input-submit" type="submit" value="add" />
-            </form>
-            <ul class="todo__ul"></ul>
+      <!------------------ WORKSPACE ------------------>
+      <main class="workspace">
+        <!------------------ TODO ------------------>
+        <div class="todo">
+          <form class="todo__form">
+            <input class="input" type="text" placeholder="type..." />
+            <input class="input-submit" type="submit" value="add" />
+          </form>
+          <ul class="todo__ul"></ul>
+        </div>
+        <!------------------ WIDGETS ------------------>
+        <div class="widgets">
+          <div class="widgets-btns">
+            <button>To do</button>
+            <button>Done</button>
+            <button>Delete</button>
           </div>
-          <!-- widgets -->
-          <div class="widgets">
-            <div class="widgets-btns">
-              <button>To do</button>
-              <button>Done</button>
-              <button>Delete</button>
-            </div>
-            <div class="widgets-position">
-              <span class="item location"><img src="./assets/icon_location.svg" alt="current location" /></span>
-              <span class="item weather"><img src="./assets/icon_weather.svg" alt="current weather" /></span>
-            </div>
+          <div class="widgets-position">
+            <span class="item location"><img src="./assets/icon_location.svg" alt="current location" /></span>
+            <span class="item weather"><img src="./assets/icon_weather.svg" alt="current weather" /></span>
           </div>
-        </main>
-      </div>
+        </div>
+      </main>
     </div>
   </body>
 </html>

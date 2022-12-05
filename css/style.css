@@ -175,10 +175,48 @@ span {
 
 /* greeting */
 .greeting {
-  margin: 25px 25px 30px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin: 15px 25px 10px 30px;
+}
+
+.greeting .signinout {
+  display: flex;
+  align-items: baseline;
+}
+
+.greeting .signinout .form input {
+  height: 2em;
+  padding-left: 8px;
+  border: 3px inset rgb(130, 128, 128);
+  background-color: rgb(205, 202, 202);
+}
+
+.greeting .signinout .form input::placeholder {
+  color: #000;
+}
+
+.greeting .signinout .message {
+  margin-right: 30px;
   font-size: 45px;
   font-weight: 700;
   text-align: left;
+}
+
+.greeting .username {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.greeting .signoutbtn {
+  font-size: 15px;
+  color: rgb(121, 118, 118);
+}
+
+.greeting img {
+  margin-right: 70px;
+  width: 70px;
 }
 
 /***************** WORKSPACE *****************/
