@@ -8,7 +8,6 @@
     <!-- css -->
     <link rel="stylesheet" href="./css/reset-css.css" />
     <link rel="stylesheet" href="./css/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
 
     <!-- js -->
     <script defer type="module" src="./js/main.js"></script>
@@ -17,7 +16,7 @@
 
     <!-- favicon -->
     <link rel="icon" type="image/png" href="./assets/icon_start.png" />
-    <title>my todo list</title>
+    <title>Start Todo</title>
   </head>
 
   <body>
@@ -68,21 +67,22 @@
       <div class="modal">
         <!-- titlebar -->
         <header class="titlebar">
-          <h1 class="titlebar__title">Start to do!</h1>
+          <h1 class="titlebar__title">Start Todo</h1>
           <button class="titlebar__btn">✖</button>
         </header>
         <!-- greeting -->
         <h2 class="greeting">Welcome!</h2>
         <!-- workspace -->
         <main class="workspace">
-          <!-- Todo -->
+          <!-- todo -->
           <div class="todo">
             <form class="todo__form">
-              <input class="todo__input" type="text" placeholder="⌨️..." />
-              <input class="todo__input-submit" type="submit" value="+" />
+              <input class="input" type="text" placeholder="type..." autofocus />
+              <input class="input-submit" type="submit" value="add" />
             </form>
-            <ul class="todo__list"></ul>
+            <ul class="todo__ul"></ul>
           </div>
+          <!-- widgets -->
           <div class="widgets">
             <div class="widgets-btns">
               <button>To do</button>
