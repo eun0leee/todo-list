@@ -3,9 +3,8 @@ const inputEl = loginformEl.querySelector("input");
 const usernameEl = document.querySelector(".username");
 const signoutBtn = document.querySelector(".signoutbtn");
 const HIDDEN = "hidden";
-const USER = "windows todo-list username";
+const USER = "windows95 todo-list username";
 
-//유저 등록 여부에 따라 다른 화면 출력
 const userLocaldata = localStorage.getItem(USER);
 if (userLocaldata) {
   printUsername(userLocaldata);
@@ -13,7 +12,7 @@ if (userLocaldata) {
   loginformEl.classList.remove(HIDDEN);
 }
 
-//로그인(유저네임 입력)
+//sign in(input user name)
 loginformEl.addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -24,7 +23,7 @@ loginformEl.addEventListener("submit", (e) => {
   printUsername(username);
 });
 
-//유저네임 출력
+//print user name
 function printUsername(username) {
   usernameEl.innerText = `${username}!!!!!!!`;
 
@@ -32,7 +31,7 @@ function printUsername(username) {
   signoutBtn.classList.remove(HIDDEN);
 }
 
-//로그아웃
+//sign out
 signoutBtn.addEventListener("click", signout);
 
 function signout() {
@@ -43,5 +42,3 @@ function signout() {
   usernameEl.classList.add(HIDDEN);
   signoutBtn.classList.add(HIDDEN);
 }
-
-//

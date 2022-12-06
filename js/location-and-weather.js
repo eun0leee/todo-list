@@ -1,3 +1,5 @@
+import { location } from "./apikey.js";
+
 navigator.geolocation.getCurrentPosition(success, error);
 
 function success(obj) {
@@ -7,33 +9,31 @@ function success(obj) {
   getWeather(lat, lon);
 }
 
-function getWeather(lat, lon) {
-  const currentLocationEl = document.querySelector(".location");
+async function getWeather(lat, lon) {
+  //api
+  const APIKEY = location.apikey;
+  const APIURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIKEY}`;
+
+  const res = await fetch(APIURL);
+  const json = await res.json();
+
+  //render
+  const locationEl = document.querySelector(".location");
   const weatherEl = document.querySelector(".weather");
   const locationText = document.createElement("span");
   locationText.className = "text";
   const weatherText = document.createElement("span");
   weatherText.className = "text";
 
-  const apiKey = "3c0979e48a1d50e080c610667f291919";
-  const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`;
+  const locationServerData = json.name;
+  const weatherServerData = json.weather[0].main;
+  locationText.innerText = locationServerData;
+  weatherText.innerText = weatherServerData;
 
-  fetch(apiUrl)
-    .then((res) => res.json())
-    .then((data) => {
-      const currentLocation = data.name;
-      const weather = data.weather[0].main;
-
-      locationText.innerText = currentLocation;
-      weatherText.innerText = weather;
-
-      currentLocationEl.append(locationText);
-      weatherEl.append(weatherText);
-    });
+  locationEl.append(locationText);
+  weatherEl.append(weatherText);
 }
 
 function error() {
-  alert("we can't find you");
+  alert("we can't find you. TT. Allow location access.");
 }
-
-//

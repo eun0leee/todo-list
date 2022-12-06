@@ -1,18 +1,20 @@
-const apiKey = "FcKdtJs202209";
-const apiUrl = "https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos";
+import { todo } from "./apikey.js";
+
+const APIKEY = todo.apikey;
+const APIURL = "https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos";
 const USERNAME = "KDT3_LeeEunyoung";
 const HEADERS = {
   "content-type": "application/json",
-  apikey: apiKey,
+  APIKEY: APIKEY,
   username: USERNAME,
 };
 
-//////////////////// API ////////////////////////
+//////////////////// API ///////////////////////
 
-//LOAD
+//get
 export async function getServerTodos() {
   try {
-    const res = await fetch(apiUrl, {
+    const res = await fetch(APIURL, {
       method: "GET",
       headers: HEADERS,
     });
@@ -23,10 +25,10 @@ export async function getServerTodos() {
   }
 }
 
-//INPUT
+//add
 export async function addServerTodos(title, order) {
   try {
-    const res = await fetch(apiUrl, {
+    const res = await fetch(APIURL, {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify({
@@ -41,10 +43,10 @@ export async function addServerTodos(title, order) {
   }
 }
 
-//EDIT
+//edit
 export async function editServerTodos(id, title, done = false, order = 0) {
   try {
-    const res = await fetch(`${apiUrl}/${id}`, {
+    const res = await fetch(`${APIURL}/${id}`, {
       method: "PUT",
       headers: HEADERS,
       body: JSON.stringify({
@@ -60,10 +62,10 @@ export async function editServerTodos(id, title, done = false, order = 0) {
   }
 }
 
-//DELETE
+//delete
 export async function deleteServerTodos(id) {
   try {
-    const res = await fetch(`${apiUrl}/${id}`, {
+    const res = await fetch(`${APIURL}/${id}`, {
       method: "DELETE",
       headers: HEADERS,
     });
@@ -79,7 +81,8 @@ const formEl = document.querySelector(".todo__form");
 const inputEl = formEl.querySelector(".input");
 const ulEl = document.querySelector(".todo__ul");
 
-function renderTodos(todosServerData) {
+function renderTodoItem(todosServerData) {
+  //edit, delete
   const li = document.createElement("li");
   li.id = todosServerData.id;
   li.className = "li";
@@ -91,13 +94,16 @@ function renderTodos(todosServerData) {
   const editBtn = document.createElement("button");
   editBtn.className = "editbtn";
   editBtn.innerText = "🖋";
+  editBtn.title = "edit";
   editBtn.addEventListener("click", editHandler);
 
   const deleteBtn = document.createElement("button");
   deleteBtn.className = "deletebtn";
   deleteBtn.innerText = "✕";
+  deleteBtn.title = "delete";
   deleteBtn.addEventListener("click", deleteHandler);
 
+  //check done
   const checkInput = document.createElement("input");
   checkInput.id = `checkbox-${li.id}`;
   checkInput.className = "checkbox";
@@ -109,12 +115,14 @@ function renderTodos(todosServerData) {
     checkInput.checked = true;
     spanEl.classList.add("text__deco");
   }
+
   checkInput.addEventListener("click", (e) => editCompleted(e, todosServerData.title, e.target.checked));
 
+  //updated date
   const updatedAt = document.createElement("span");
   updatedAt.className = "updatedAt";
   const date = new Date(`${todosServerData.updatedAt}`);
-  const year = String(date.getFullYear()).substr(2);
+  const year = String(date.getFullYear()).slice(2);
   const month = String(date.getMonth() + 1).padStart(2, "0");
   const day = String(date.getDate()).padStart(2, "0");
   const hours = String(date.getHours()).padStart(2, "0");
@@ -125,27 +133,27 @@ function renderTodos(todosServerData) {
   ulEl.prepend(li);
 }
 
-/////////////////  이벤트리스너 함수 ///////////////////
-//조회
-//간단히 할 다른 방법 없는지
+/////////////////  EVENTLISTER ///////////////////
+//get
 (async function getTodos() {
   try {
     let getData = await getServerTodos();
-    let res = getData.sort(function (a, b) {
+    let changedData = getData.sort(function (a, b) {
       return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
     });
-    if (res.length !== 0) {
-      res.forEach((item) => renderTodos(item));
-    } else {
-      //화면에 나타내기
-      console.log("Type your first Todo");
+    if (changedData.length == 0) {
+      const zeroLength = document.querySelector(".zerolength");
+      zeroLength.style.display = "block";
+      ulEl.prepend(zeroLength);
+    } else if (changedData.length !== 0) {
+      changedData.forEach((item) => renderTodoItem(item));
     }
   } catch (error) {
     console.log(error);
   }
 })();
 
-//입력
+//add
 formEl.addEventListener("submit", async (e) => {
   e.preventDefault();
   const newTitle = inputEl.value;
@@ -153,14 +161,14 @@ formEl.addEventListener("submit", async (e) => {
   // let newOrder = ulEl.querySelectorAll(".li").length + 1;
   inputEl.value = "";
   try {
-    let getData = await addServerTodos(newTitle, newOrder);
-    renderTodos(getData);
+    let getData = await addServerTodos(newTitle);
+    renderTodoItem(getData);
   } catch (error) {
     console.log(error);
   }
 });
 
-//삭제
+//delete
 async function deleteHandler(e) {
   try {
     const li = e.target.parentElement;
@@ -171,7 +179,7 @@ async function deleteHandler(e) {
   }
 }
 
-//수정
+//edit
 function editHandler(e) {
   //기존 요소 불러오기
   const li = e.target.parentElement;
@@ -184,14 +192,14 @@ function editHandler(e) {
   <button class="todotext_edit_cancel" type="button" value="cancel">cancel</button>
   </form>`;
 
-  //수정중 엔터 또는 ok 버튼
+  //수정중 submit
   const editInput = li.querySelector(".todotext_edit_text");
   editInput.parentElement.addEventListener("submit", (e) => {
     e.preventDefault();
     editCompleted(e, editInput.value);
   });
 
-  //수정중 cancel 버튼
+  //수정중 cancel
   const editcancelBtn = li.querySelector(".todotext_edit_cancel");
   editcancelBtn.addEventListener("click", (e) => editCompleted(e, todoText.innerText));
 }
@@ -200,5 +208,5 @@ async function editCompleted(e, text, done) {
   const li = e.target.closest("li");
   const getData = await editServerTodos(li.id, text, done);
   li.remove();
-  renderTodos(getData);
+  renderTodoItem(getData);
 }

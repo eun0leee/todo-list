@@ -8,11 +8,12 @@
     <!-- css -->
     <link rel="stylesheet" href="./css/reset-css.css" />
     <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
 
     <!-- js -->
     <script defer type="module" src="./js/main.js"></script>
     <script defer src="./js/clock.js"></script>
-    <script defer src="./js/location-and-weather.js"></script>
+    <script defer type="module" src="./js/location-and-weather.js"></script>
     <script defer src="./js/username.js"></script>
 
     <!-- favicon -->
@@ -22,45 +23,44 @@
 
   <body>
     <!------------------ BACKGROUND ------------------>
-
     <!-- icons -->
-    <div class="background-icons">
+    <div class="background-icons" aria-label="window95 version for background icons">
       <button class="icon">
-        <img src="./assets/icon_my.png" alt="computer icon" />
+        <img src="./assets/icon_my.png" alt="windows95 computer icon" />
         <span>My Computer</span>
       </button>
       <button class="icon">
-        <img src="./assets/icon_network.png" alt="network icon" />
+        <img src="./assets/icon_network.png" alt="windows95 network icon" />
         <span>Network<br />Neighborhood</span>
       </button>
       <button class="icon">
-        <img src="./assets/icon_YouTube.png" alt="youtube icon" />
+        <img src="./assets/icon_YouTube.png" alt="windows95 youtube icon" />
         <span>YouTube</span>
       </button>
       <button class="icon">
-        <img src="./assets/icon_bin.png" alt="bin icon" />
+        <img src="./assets/icon_bin.png" alt="windows95 Recycle Bin icon" />
         <span>Recycle Bin</span>
       </button>
       <button class="icon">
-        <img src="./assets/icon_Starbucks.png" alt="Starbucks icon" />
+        <img src="./assets/icon_Starbucks.png" alt="windows95 Starbucks icon" />
         <span>Starbucks</span>
       </button>
       <button class="icon iconTodo">
-        <img src="./assets/icon_Todo.png" alt="todo list icon" />
+        <img src="./assets/icon_Todo.png" alt="windows95 memo icon" />
         <span>Start Todo</span>
       </button>
     </div>
 
     <!-- task-bar -->
-    <div class="taskbar">
+    <div class="taskbar" aria-label="window95 version graphics for taskbar">
       <div class="task-btns">
         <button class="startbtn">
-          <img src="./assets/icon_start.png" alt="windows icon" />
+          <img src="./assets/icon_start.png" alt="windows95 icon" />
           Start
         </button>
         <span class="todobtn">Start Todo</span>
       </div>
-      <span class="task-clock">00:00:00</span>
+      <span class="task-clock" aria-current="time">00:00:00</span>
     </div>
 
     <!------------------ MODAL ------------------>
@@ -71,33 +71,37 @@
         <button class="titlebar__btn">✖</button>
       </header>
       <!-- greeting -->
-      <div class="greeting">
+      <div class="greeting-box">
         <!-- signinout -->
         <div class="signinout">
           <h2 class="message">Welcome!</h2>
           <form action="" class="form hidden">
             <input required maxlength="10" type="text" placeholder="What is your name?" autofocus />
           </form>
-          <h2 class="username hidden"></h2>
+          <h3 class="username hidden"></h3>
           <button class="signoutbtn hidden">sign out</button>
         </div>
         <img src="./assets/gif_cat.gif" alt="walking cat" />
       </div>
-      <!------------------ WORKSPACE ------------------>
+
       <main class="workspace">
         <!------------------ TODO ------------------>
         <div class="todo">
           <form class="todo__form">
+            <strong class="zerolength hidden">
+              Type your first Todo.<br />
+              Then you can get🍀
+            </strong>
             <input class="input" type="text" placeholder="type..." />
             <input class="input-submit" type="submit" value="add" />
           </form>
           <ul class="todo__ul"></ul>
         </div>
-        <!------------------ WIDGETS ------------------->
+        <!------------------ WIDGETS ------------------>
         <div class="widgets">
           <div class="widgets-btns">
-            <button>To do</button>
-            <button>Done</button>
+            <button>only To do</button>
+            <button>only Done</button>
             <button>Delete</button>
           </div>
           <div class="widgets-position">
