@@ -1,15 +1,15 @@
-import { location } from "./apikey.js";
+import { location } from "./APIkey.js";
 
 navigator.geolocation.getCurrentPosition(success, error);
 
-function success(obj) {
+export function success(obj) {
   const lat = obj.coords.latitude;
   const lon = obj.coords.longitude;
 
   getWeather(lat, lon);
 }
 
-async function getWeather(lat, lon) {
+export async function getWeather(lat, lon) {
   //api
   const APIKEY = location.apikey;
   const APIURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIKEY}`;
@@ -34,6 +34,6 @@ async function getWeather(lat, lon) {
   weatherEl.append(weatherText);
 }
 
-function error() {
+export function error() {
   alert("we can't find you. TT. Allow location access.");
 }

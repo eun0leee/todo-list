@@ -1,85 +1,50 @@
-import { todo } from "./apikey.js";
+//////////////////// MODULES ///////////////////////
+//todo
+import { getServerTodos, addServerTodos, editServerTodos, deleteServerTodos } from "./APIs.js";
 
-const APIKEY = todo.apikey;
-const APIURL = "https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos";
-const USERNAME = "KDT3_LeeEunyoung";
-const HEADERS = {
-  "content-type": "application/json",
-  APIKEY: APIKEY,
-  username: USERNAME,
-};
-
-//////////////////// API ///////////////////////
-
-//get
-export async function getServerTodos() {
-  try {
-    const res = await fetch(APIURL, {
-      method: "GET",
-      headers: HEADERS,
-    });
-    const json = await res.json();
-    return json;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-//add
-export async function addServerTodos(title, order) {
-  try {
-    const res = await fetch(APIURL, {
-      method: "POST",
-      headers: HEADERS,
-      body: JSON.stringify({
-        title: title,
-        order: order,
-      }),
-    });
-    const json = await res.json();
-    return json;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-//edit
-export async function editServerTodos(id, title, done = false, order = 0) {
-  try {
-    const res = await fetch(`${APIURL}/${id}`, {
-      method: "PUT",
-      headers: HEADERS,
-      body: JSON.stringify({
-        title: title,
-        done: done,
-        order: order,
-      }),
-    });
-    const json = await res.json();
-    return json;
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-//delete
-export async function deleteServerTodos(id) {
-  try {
-    const res = await fetch(`${APIURL}/${id}`, {
-      method: "DELETE",
-      headers: HEADERS,
-    });
-    const json = await res.json();
-    return json;
-  } catch (error) {
-    console.log(error);
-  }
-}
+//etc
+import "./clock.js";
+import "./location-and-weather.js";
+import "./username.js";
 
 //////////////////// RENDER ///////////////////////
 const formEl = document.querySelector(".todo__form");
 const inputEl = formEl.querySelector(".input");
 const ulEl = document.querySelector(".todo__ul");
+
+//get
+(async function getTodos() {
+  try {
+    let getData = await getServerTodos();
+    let changedData = getData.sort(function (a, b) {
+      return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
+    });
+    if (changedData.length == 0) {
+      const zeroLength = document.querySelector(".zerolength");
+      zeroLength.style.display = "block";
+      ulEl.prepend(zeroLength);
+    } else if (changedData.length !== 0) {
+      changedData.forEach((item) => renderTodoItem(item));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+})();
+
+//add
+formEl.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const newTitle = inputEl.value;
+  const newOrder = Date.now();
+  // let newOrder = ulEl.querySelectorAll(".li").length + 1;
+  inputEl.value = "";
+  try {
+    let getData = await addServerTodos(newTitle);
+    renderTodoItem(getData);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 function renderTodoItem(todosServerData) {
   //edit, delete
@@ -132,41 +97,6 @@ function renderTodoItem(todosServerData) {
   li.append(checkInput, checkLabel, spanEl, updatedAt, editBtn, deleteBtn);
   ulEl.prepend(li);
 }
-
-/////////////////  EVENTLISTER ///////////////////
-//get
-(async function getTodos() {
-  try {
-    let getData = await getServerTodos();
-    let changedData = getData.sort(function (a, b) {
-      return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
-    });
-    if (changedData.length == 0) {
-      const zeroLength = document.querySelector(".zerolength");
-      zeroLength.style.display = "block";
-      ulEl.prepend(zeroLength);
-    } else if (changedData.length !== 0) {
-      changedData.forEach((item) => renderTodoItem(item));
-    }
-  } catch (error) {
-    console.log(error);
-  }
-})();
-
-//add
-formEl.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const newTitle = inputEl.value;
-  const newOrder = Date.now();
-  // let newOrder = ulEl.querySelectorAll(".li").length + 1;
-  inputEl.value = "";
-  try {
-    let getData = await addServerTodos(newTitle);
-    renderTodoItem(getData);
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 //delete
 async function deleteHandler(e) {
