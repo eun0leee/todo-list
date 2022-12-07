@@ -1,13 +1,14 @@
 import { todo } from "./APIkey.js";
 
 const APIKEY = todo.apikey;
-const APIURL = "https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos";
 const USERNAME = "KDT3_LeeEunyoung";
 const HEADERS = {
   "content-type": "application/json",
   APIKEY: APIKEY,
   username: USERNAME,
 };
+
+const APIURL = "https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos";
 
 //////////////////// API ///////////////////////
 
