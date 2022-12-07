@@ -1,6 +1,7 @@
 import { POSITION_KEY } from "./APIkey.js";
 
-console.log(POSITION_KEY);
+const APIKEY = POSITION_KEY;
+
 navigator.geolocation.getCurrentPosition(success, error);
 
 export function success(obj) {
