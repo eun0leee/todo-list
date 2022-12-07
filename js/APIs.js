@@ -1,6 +1,7 @@
-import { todo } from "./APIkey.js";
+import { TODO_KEY } from "./APIkey.js";
 
-const APIKEY = todo.apikey;
+const APIKEY = TODO_KEY;
+console.log(APIKEY);
 const USERNAME = "KDT3_LeeEunyoung";
 const HEADERS = {
   "content-type": "application/json",

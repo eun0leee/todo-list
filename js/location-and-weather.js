@@ -1,5 +1,6 @@
-import { location } from "./APIkey.js";
+import { POSITION_KEY } from "./APIkey.js";
 
+console.log(POSITION_KEY);
 navigator.geolocation.getCurrentPosition(success, error);
 
 export function success(obj) {
@@ -11,7 +12,7 @@ export function success(obj) {
 
 export async function getWeather(lat, lon) {
   //api
-  const APIKEY = location.apikey;
+  const APIKEY = POSITION_KEY;
   const APIURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIKEY}`;
 
   const res = await fetch(APIURL);
