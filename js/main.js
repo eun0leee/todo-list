@@ -12,40 +12,6 @@ const formEl = document.querySelector(".todo__form");
 const inputEl = formEl.querySelector(".input");
 const ulEl = document.querySelector(".todo__ul");
 
-//get
-(async function getTodos() {
-  try {
-    let getData = await getServerTodos();
-    let changedData = getData.sort(function (a, b) {
-      return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
-    });
-    if (changedData.length == 0) {
-      const zeroLength = document.querySelector(".zerolength");
-      zeroLength.style.display = "block";
-      ulEl.prepend(zeroLength);
-    } else if (changedData.length !== 0) {
-      changedData.forEach((item) => renderTodoItem(item));
-    }
-  } catch (error) {
-    console.log(error);
-  }
-})();
-
-//add
-formEl.addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const newTitle = inputEl.value;
-  const newOrder = Date.now();
-  // let newOrder = ulEl.querySelectorAll(".li").length + 1;
-  inputEl.value = "";
-  try {
-    let getData = await addServerTodos(newTitle);
-    renderTodoItem(getData);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
 function renderTodoItem(todosServerData) {
   //edit, delete
   const li = document.createElement("li");
@@ -97,6 +63,40 @@ function renderTodoItem(todosServerData) {
   li.append(checkInput, checkLabel, spanEl, updatedAt, editBtn, deleteBtn);
   ulEl.prepend(li);
 }
+
+//get
+(async function getTodos() {
+  try {
+    let getData = await getServerTodos();
+    let changedData = getData.sort(function (a, b) {
+      return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
+    });
+    if (changedData.length == 0) {
+      const zeroLength = document.querySelector(".zerolength");
+      zeroLength.style.display = "block";
+      ulEl.prepend(zeroLength);
+    } else if (changedData.length !== 0) {
+      changedData.forEach((item) => renderTodoItem(item));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+})();
+
+//add
+formEl.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const newTitle = inputEl.value;
+  const newOrder = Date.now();
+  // let newOrder = ulEl.querySelectorAll(".li").length + 1;
+  inputEl.value = "";
+  try {
+    let getData = await addServerTodos(newTitle);
+    renderTodoItem(getData);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 //delete
 async function deleteHandler(e) {
