@@ -1,4 +1,4 @@
-import { todo } from "./apikey.js";
+import { todo } from "./APIkey.js";
 
 const APIKEY = todo.apikey;
 const APIURL = "https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos";
