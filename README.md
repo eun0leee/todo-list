@@ -5,7 +5,7 @@ Fastcampus 3차과제, window98 Todo-list 프로젝트입니다.
 ## 🐾 Demo
 
 ![gif-800px](https://user-images.githubusercontent.com/90189513/205950510-2bd1466b-2862-44c8-92fb-af694174aa01.gif)  
-here, [Demo site](https://resilient-jalebi-3f6ccb.netlify.app/) and [github repository](https://github.com/eun0leee/window98-Todo-list.git)! thank you
+Here, [Demo site](https://resilient-jalebi-3f6ccb.netlify.app/) and [github repository](https://github.com/eun0leee/window98-Todo-list.git)! thank you
 
 ## 🐾 Project duration
 
@@ -27,7 +27,7 @@ here, [Demo site](https://resilient-jalebi-3f6ccb.netlify.app/) and [github repo
 - [x] widgets current location and weather
 - [x] moving cat gif file
 
-## 🐾 notion document
+## 🐾 Notion document
 
 ![화면 캡처 2022-12-07 153815](https://user-images.githubusercontent.com/90189513/206106815-fb01875a-4092-4833-bcc9-0ced2fec49c4.png)
 
