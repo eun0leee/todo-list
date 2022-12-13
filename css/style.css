@@ -309,6 +309,7 @@ span {
 .todo__ul .li .editbtn,
 .deletebtn {
   font-weight: 700;
+  cursor: pointer;
 }
 
 /* check box */

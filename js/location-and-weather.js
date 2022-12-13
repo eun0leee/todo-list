@@ -16,24 +16,28 @@ export async function getWeather(lat, lon) {
   const APIKEY = POSITION_KEY;
   const APIURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIKEY}`;
 
-  const res = await fetch(APIURL);
-  const json = await res.json();
+  try {
+    const res = await fetch(APIURL);
+    const json = await res.json();
 
-  //render
-  const locationEl = document.querySelector(".location");
-  const weatherEl = document.querySelector(".weather");
-  const locationText = document.createElement("span");
-  locationText.className = "text";
-  const weatherText = document.createElement("span");
-  weatherText.className = "text";
+    //render
+    const locationEl = document.querySelector(".location");
+    const weatherEl = document.querySelector(".weather");
+    const locationText = document.createElement("span");
+    locationText.className = "text";
+    const weatherText = document.createElement("span");
+    weatherText.className = "text";
 
-  const locationServerData = json.name;
-  const weatherServerData = json.weather[0].main;
-  locationText.innerText = locationServerData;
-  weatherText.innerText = weatherServerData;
+    const locationServerData = json.name;
+    const weatherServerData = json.weather[0].main;
+    locationText.innerText = locationServerData;
+    weatherText.innerText = weatherServerData;
 
-  locationEl.append(locationText);
-  weatherEl.append(weatherText);
+    locationEl.append(locationText);
+    weatherEl.append(weatherText);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export function error() {

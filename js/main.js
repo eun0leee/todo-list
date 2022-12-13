@@ -14,13 +14,13 @@ const ulEl = document.querySelector(".todo__ul");
 
 function renderTodoItem(todosServerData) {
   //edit, delete
-  const li = document.createElement("li");
-  li.id = todosServerData.id;
-  li.className = "li";
+  const liEl = document.createElement("li");
+  liEl.id = todosServerData.id;
+  liEl.className = "li";
 
-  const spanEl = document.createElement("span");
-  spanEl.className = "todotext";
-  spanEl.innerText = todosServerData.title;
+  const titleEl = document.createElement("span");
+  titleEl.className = "todotext";
+  titleEl.innerText = todosServerData.title;
 
   const editBtn = document.createElement("button");
   editBtn.className = "editbtn";
@@ -36,15 +36,15 @@ function renderTodoItem(todosServerData) {
 
   //check done
   const checkInput = document.createElement("input");
-  checkInput.id = `checkbox-${li.id}`;
+  checkInput.id = `checkbox-${liEl.id}`;
   checkInput.className = "checkbox";
   checkInput.type = "checkbox";
   const checkLabel = document.createElement("Label");
-  checkLabel.htmlFor = `checkbox-${li.id}`;
+  checkLabel.htmlFor = `checkbox-${liEl.id}`;
 
   if (todosServerData.done) {
     checkInput.checked = true;
-    spanEl.classList.add("text__deco");
+    titleEl.classList.add("text__deco");
   }
 
   checkInput.addEventListener("click", (e) => editCompleted(e, todosServerData.title, e.target.checked));
@@ -60,8 +60,8 @@ function renderTodoItem(todosServerData) {
   const minutes = String(date.getMinutes()).padStart(2, "0");
   updatedAt.innerText = `${year}${month}${day} ${hours}:${minutes}`;
 
-  li.append(checkInput, checkLabel, spanEl, updatedAt, editBtn, deleteBtn);
-  ulEl.prepend(li);
+  liEl.append(checkInput, checkLabel, titleEl, updatedAt, editBtn, deleteBtn);
+  ulEl.prepend(liEl);
 }
 
 //get
@@ -86,15 +86,19 @@ function renderTodoItem(todosServerData) {
 //add
 formEl.addEventListener("submit", async (e) => {
   e.preventDefault();
-  const newTitle = inputEl.value;
-  const newOrder = Date.now();
-  // let newOrder = ulEl.querySelectorAll(".li").length + 1;
-  inputEl.value = "";
-  try {
-    let getData = await addServerTodos(newTitle);
-    renderTodoItem(getData);
-  } catch (error) {
-    console.log(error);
+  if (inputEl.value) {
+    const newTitle = inputEl.value;
+    const newOrder = Date.now();
+    // let newOrder = ulEl.querySelectorAll(".li").length + 1;
+    inputEl.value = "";
+    try {
+      let getData = await addServerTodos(newTitle);
+      renderTodoItem(getData);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    console.log("please type your Todo");
   }
 });
 
@@ -117,8 +121,8 @@ function editHandler(e) {
 
   //수정 폼 열기
   li.innerHTML = `<form action="GET" class="todotext_edit">
-  <Input class="todotext_edit_text" value="${todoText.innerText}">
-  <input class="todotext_edit_ok" type="submit" value="ok">
+  <input class="todotext_edit_text" value="${todoText.innerText}">
+  <input class="todotext_edit_ok" type="button" value="ok">
   <button class="todotext_edit_cancel" type="button" value="cancel">cancel</button>
   </form>`;
 
