@@ -13,7 +13,6 @@ const inputEl = formEl.querySelector(".input");
 const ulEl = document.querySelector(".todo__ul");
 
 function renderTodoItem(todosServerData) {
-  //edit, delete
   const liEl = document.createElement("li");
   liEl.id = todosServerData.id;
   liEl.className = "li";
@@ -34,6 +33,17 @@ function renderTodoItem(todosServerData) {
   deleteBtn.title = "delete";
   deleteBtn.addEventListener("click", deleteHandler);
 
+  //updated date
+  const updatedAt = document.createElement("span");
+  updatedAt.className = "updatedAt";
+  const date = new Date(`${todosServerData.updatedAt}`);
+  const year = String(date.getFullYear()).slice(2);
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  updatedAt.innerText = `${year}${month}${day} ${hours}:${minutes}`;
+
   //check done
   const checkInput = document.createElement("input");
   checkInput.id = `checkbox-${liEl.id}`;
@@ -49,39 +59,33 @@ function renderTodoItem(todosServerData) {
 
   checkInput.addEventListener("click", (e) => editCompleted(e, todosServerData.title, e.target.checked));
 
-  //updated date
-  const updatedAt = document.createElement("span");
-  updatedAt.className = "updatedAt";
-  const date = new Date(`${todosServerData.updatedAt}`);
-  const year = String(date.getFullYear()).slice(2);
-  const month = String(date.getMonth() + 1).padStart(2, "0");
-  const day = String(date.getDate()).padStart(2, "0");
-  const hours = String(date.getHours()).padStart(2, "0");
-  const minutes = String(date.getMinutes()).padStart(2, "0");
-  updatedAt.innerText = `${year}${month}${day} ${hours}:${minutes}`;
-
   liEl.append(checkInput, checkLabel, titleEl, updatedAt, editBtn, deleteBtn);
   ulEl.prepend(liEl);
 }
 
 //get
-(async function getTodos() {
+let getData = await getServerTodos();
+getTodos(getData);
+
+async function getTodos(getData) {
   try {
-    let getData = await getServerTodos();
-    let changedData = getData.sort(function (a, b) {
+    //업데이트순 정렬
+    let sortedData = getData.sort(function (a, b) {
       return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
     });
-    if (changedData.length == 0) {
+    //서버에 값 존재 여부에 따른 출력 변경
+    //값 없으면 등록하세요, 값 있으면 렌더
+    if (getData.length == 0) {
       const zeroLength = document.querySelector(".zerolength");
       zeroLength.style.display = "block";
       ulEl.prepend(zeroLength);
-    } else if (changedData.length !== 0) {
-      changedData.forEach((item) => renderTodoItem(item));
+    } else if (getData.length !== 0) {
+      sortedData.forEach((item) => renderTodoItem(item));
     }
   } catch (error) {
     console.log(error);
   }
-})();
+}
 
 //add
 formEl.addEventListener("submit", async (e) => {
@@ -140,7 +144,33 @@ function editHandler(e) {
 
 async function editCompleted(e, text, done) {
   const li = e.target.closest("li");
-  const getData = await editServerTodos(li.id, text, done);
+  const getEditData = await editServerTodos(li.id, text, done);
+  console.log(getEditData);
   li.remove();
-  renderTodoItem(getData);
+  renderTodoItem(getEditData);
 }
+
+//filter
+const onlyTodo = document.querySelector(".onlytodo-btn");
+const onlyDone = document.querySelector(".onlydone-btn");
+const allBtn = document.querySelector(".all-btn");
+
+onlyTodo.addEventListener("click", async () => {
+  ulEl.innerHTML = "";
+  let getData = await getServerTodos();
+  let filterTodoData = getData.filter((el) => el.done == false);
+  getTodos(filterTodoData);
+});
+
+onlyDone.addEventListener("click", async () => {
+  ulEl.innerHTML = "";
+  let getData = await getServerTodos();
+  let filterDoneData = getData.filter((el) => el.done == true);
+  getTodos(filterDoneData);
+});
+
+allBtn.addEventListener("click", async () => {
+  ulEl.innerHTML = "";
+  let getData = await getServerTodos();
+  getTodos(getData);
+});

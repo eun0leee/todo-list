@@ -1,0 +1,21 @@
+{
+  "name": "window98-todo-list",
+  "version": "1.0.0",
+  "description": "Fastcampus 3차과제, window98 Todo-list 프로젝트입니다.",
+  "main": "./js/main.js",
+  "scripts": {
+    "start": "parcel index.html --open",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eun0leee/window98-Todo-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eun0leee/window98-Todo-list/issues"
+  },
+  "homepage": "https://github.com/eun0leee/window98-Todo-list#readme"
+}

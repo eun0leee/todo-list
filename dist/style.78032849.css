@@ -1,0 +1,412 @@
+/***************** FONT *****************/
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:wght@400;700&display=swap");
+
+@font-face {
+  font-family: "DungGeunMo";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff") format("woff");
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3, U+D7B0-D7FF, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+}
+
+/***************** COMMON *****************/
+body {
+  background-color: #a585d4;
+  font-family: "DungGeunMo", "DotGothic16", sans-serif;
+  letter-spacing: 1.2px;
+}
+
+button,
+input,
+textarea {
+  padding: 0;
+  border: none;
+  background-color: transparent;
+
+  font-family: "DungGeunMo", "DotGothic16", sans-serif;
+  letter-spacing: 1.2px;
+}
+
+.hidden {
+  display: none;
+}
+
+/***************** BACKGROUND *****************/
+/* icons */
+.background-icons {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 35px 20px;
+
+  width: fit-content;
+  height: 90vh;
+  margin: 10px;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  min-width: 110px;
+  min-height: 65px;
+
+  color: #e6e6e6;
+  font-size: 15px;
+}
+
+.icon img {
+  width: 40px;
+  margin-bottom: 7px;
+}
+
+.icon img,
+span {
+  cursor: pointer;
+}
+
+/* task-bar */
+.taskbar {
+  display: flex;
+  justify-content: space-between;
+
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+
+  width: 100vw;
+  height: 50px;
+  padding: 5px;
+
+  border-top: 2px solid #fff;
+  box-shadow: 0px -2px 2px 0px rgba(49, 49, 49, 0.3);
+  background-color: #c0c0c0;
+}
+
+.task-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.task-btns .startbtn,
+.todobtn {
+  display: flex;
+  align-items: center;
+  height: 38px;
+  padding-left: 5px;
+
+  border: 3px #fff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.task-btns .startbtn {
+  width: 90px;
+
+  border-style: outset;
+}
+
+.task-btns .startbtn img {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+}
+
+.task-btns .todobtn {
+  width: 180px;
+  border-style: inset;
+  background-color: #eae7e7;
+
+  text-align: left;
+}
+
+.task-clock {
+  padding: 8px 20px;
+
+  border: 3px inset #fff;
+}
+
+/***************** MODAL *****************/
+.modal {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 850px;
+  height: 550px;
+
+  border-top: 4px solid #eceffa;
+  border-left: 4px solid #eceffa;
+  box-shadow: 2px 2px 3px #010303;
+  background-color: #e4ddf2;
+}
+
+/* titlebar */
+.titlebar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #63359a;
+
+  padding: 10px 8px;
+
+  color: #fefeff;
+  font-weight: 700;
+}
+
+.titlebar__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20px;
+  height: 20px;
+  padding-bottom: 2px;
+
+  border-top: 2px solid #eceffa;
+  border-left: 2px solid #eceffa;
+  box-shadow: 2px 2px 1px #010303;
+  background-color: #c0c0c0;
+
+  color: #000;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+/* greeting */
+.greeting-box {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  margin: 15px 25px 10px 30px;
+}
+
+.greeting-box .signinout {
+  display: flex;
+  align-items: baseline;
+}
+
+.greeting-box .signinout .form input {
+  height: 2em;
+  padding-left: 8px;
+  border: 3px inset #828080;
+  background-color: #cdcaca;
+}
+
+.greeting-box .signinout .form input::placeholder {
+  color: #000;
+}
+
+.greeting-box .signinout .message {
+  margin-right: 30px;
+  font-size: 45px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.greeting-box .username {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.greeting-box .signoutbtn {
+  font-size: 15px;
+  color: #797676;
+}
+
+.greeting-box img {
+  margin-right: 70px;
+  width: 70px;
+}
+
+/***************** WORKSPACE *****************/
+.workspace {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 35px 20px 30px;
+}
+
+/***************** TODO *****************/
+/* add form */
+.todo__form {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.todo__form .input {
+  width: 100%;
+  height: 2em;
+  padding: 5px;
+  border: 3px inset #b9b5b5;
+  background-color: #fff;
+
+  font-size: 20px;
+}
+
+.todo__form .input-submit {
+  padding: 0 10px;
+  border: 3px outset #d1d0d0;
+  background-color: #b9b5b5;
+  cursor: pointer;
+}
+
+.todo__form .input-submit:active {
+  border-style: inset;
+}
+
+/* list */
+.todo__ul {
+  width: 560px;
+  max-height: 325px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.todo__ul .li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo__ul .li + .li {
+  margin-top: 35px;
+}
+
+.todo__ul .li .todotext,
+.todotext_edit_Input {
+  margin-right: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+
+.todo__ul .li .todotext {
+  font-weight: 400;
+}
+
+.todo__ul .li .updatedAt,
+.editbtn,
+.deletebtn,
+.todotext_edit_ok,
+.todotext_edit_cancel {
+  font-size: 16px;
+  color: #b9b7b7;
+}
+
+.todo__ul .li .updatedAt,
+.editbtn {
+  margin-right: 8px;
+}
+
+.todo__ul .li .updatedAt {
+  padding-top: 3px;
+  white-space: nowrap;
+}
+
+.todo__ul .li .editbtn,
+.deletebtn {
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* check box */
+.todo__ul .li .checkbox {
+  display: none;
+}
+
+.todo__ul .li label {
+  position: relative;
+
+  min-width: 12px;
+  min-height: 12px;
+  margin-right: 20px;
+  border: 2px inset #fff;
+  border-radius: 50%;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.todo__ul .li .checkbox:checked + label::before {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+
+  content: " ";
+  min-width: 4px;
+  min-height: 4px;
+  border-radius: 50%;
+  background-color: #000;
+}
+
+.text__deco {
+  text-decoration: line-through;
+}
+
+.zerolength {
+  margin-top: 40px;
+  font-size: 30px;
+  text-align: center;
+  color: #828080;
+  line-height: 1.5;
+}
+
+/* edit mode */
+.todotext_edit_text {
+  width: 370px;
+  font-size: 20px;
+}
+
+.todotext_edit_ok {
+  margin-right: 8px;
+  margin-bottom: 2px;
+}
+
+.todotext_edit_cancel {
+  margin-bottom: 3px;
+}
+
+/***************** WIDGETS *****************/
+.widgets-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-bottom: 80px;
+}
+
+.widgets-btns button {
+  cursor: pointer;
+}
+
+.widgets-btns button:active {
+  border-style: inset;
+}
+
+.widgets button,
+.item {
+  width: 180px;
+  height: 40px;
+
+  border: 3px outset #fff;
+}
+
+.widgets-position .item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.widgets-position .item + .item {
+  margin-top: 10px;
+}
+
+.widgets-position img {
+  width: 20px;
+  margin-right: 10px;
+}
+
+
+/*# sourceMappingURL=/style.78032849.css.map */
