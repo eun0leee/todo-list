@@ -1,16 +1,17 @@
 /***************** FONT *****************/
-@import url("https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&family=Inter:wght@400;700&display=swap');
 
 @font-face {
-  font-family: "DungGeunMo";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff") format("woff");
-  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3, U+D7B0-D7FF, U+0020-002F, U+003A-0040, U+005B-0060, U+007B-007E;
+  font-family: 'DungGeunMo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+  unicode-range: U+1100-11FF, U+3130-318F, U+A960-A97F, U+AC00-D7A3, U+D7B0-D7FF, U+0020-002F, U+003A-0040, U+005B-0060,
+    U+007B-007E;
 }
 
 /***************** COMMON *****************/
 body {
   background-color: #a585d4;
-  font-family: "DungGeunMo", "DotGothic16", sans-serif;
+  font-family: 'DungGeunMo', 'DotGothic16', sans-serif;
   letter-spacing: 1.2px;
 }
 
@@ -21,7 +22,7 @@ textarea {
   border: none;
   background-color: transparent;
 
-  font-family: "DungGeunMo", "DotGothic16", sans-serif;
+  font-family: 'DungGeunMo', 'DotGothic16', sans-serif;
   letter-spacing: 1.2px;
 }
 
@@ -334,7 +335,7 @@ span {
   top: 2px;
   left: 2px;
 
-  content: " ";
+  content: ' ';
   min-width: 4px;
   min-height: 4px;
   border-radius: 50%;
@@ -406,4 +407,31 @@ span {
 .widgets-position img {
   width: 20px;
   margin-right: 10px;
+}
+
+/***************** LOADING *****************/
+.active {
+  position: fixed;
+  top: 45%;
+  left: 40%;
+  justify-content: center;
+  align-items: center;
+
+  border: 8px solid #f3f3f3; /* Light grey */
+  border-top: 8px solid #73797d; /* Blue */
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: active 2s linear infinite;
+
+  z-index: 9999;
+}
+
+@keyframes active {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
