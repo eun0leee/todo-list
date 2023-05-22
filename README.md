@@ -4,8 +4,10 @@ Fastcampus 3차과제, window98 Todo-list 프로젝트입니다.
 
 ## ☑️ 사이트
 
-![gif-800px](https://user-images.githubusercontent.com/90189513/205950510-2bd1466b-2862-44c8-92fb-af694174aa01.gif)
 - [Demo Site](https://resilient-jalebi-3f6ccb.netlify.app/)
+
+![gif-800px](https://user-images.githubusercontent.com/90189513/205950510-2bd1466b-2862-44c8-92fb-af694174aa01.gif)
+
 
 ## ☑️ 프로젝트 기간
 
@@ -17,9 +19,12 @@ Fastcampus 3차과제, window98 Todo-list 프로젝트입니다.
 
 ## ☑️ 화면구성
 
-| todo 등록 전 |  todo 등록 후   |
-| :-------------------------------------------: | :------------: |
-|  <img width="329" src="https://github.com/eun0leee/mjff-clone/assets/90189513/cb43a959-1ee4-4cc0-931b-f45ec7269e12"/> |  <img width="329" src="https://github.com/eun0leee/mjff-clone/assets/90189513/5a766bad-bdff-4ece-afc2-07f24456eed9"/>|  
+| todo 등록 전 |
+| :-------------------------------------------: |
+|  <img width="700" src="https://github.com/eun0leee/window98-Todo-list/assets/90189513/8477e226-486a-438b-9495-9cf23f35dbb0"/>|  
+| todo 등록 후 |  
+| <img width="700" src="https://github.com/eun0leee/window98-Todo-list/assets/90189513/91ee9dab-a072-4d7f-b859-7aaadb1e1bf6"/> |
+
 
 ## ☑️ 구현내용
 
