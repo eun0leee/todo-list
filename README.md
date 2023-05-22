@@ -1,21 +1,27 @@
-# 📝 window95 Todo-list 📝
+# ☑️ window95 Todo-list ☑️
 
 Fastcampus 3차과제, window98 Todo-list 프로젝트입니다.
 
-## 🐾 Demo
+## ☑️ 사이트
 
-![gif-800px](https://user-images.githubusercontent.com/90189513/205950510-2bd1466b-2862-44c8-92fb-af694174aa01.gif)  
-Here, [Demo site](https://resilient-jalebi-3f6ccb.netlify.app/) and [github repository](https://github.com/eun0leee/window98-Todo-list.git)! thank you
+![gif-800px](https://user-images.githubusercontent.com/90189513/205950510-2bd1466b-2862-44c8-92fb-af694174aa01.gif)
+- [Demo Site](https://resilient-jalebi-3f6ccb.netlify.app/)
 
-## 🐾 Project duration
+## ☑️ 프로젝트 기간
 
 2022.11.28 ~ 2022.12.06
 
-## 🐾 Tech Stacks
+## ☑️ 기술스택
 
 <img alt="Html" src ="https://img.shields.io/badge/HTML-E34F26.svg?&style=for-the-badge&logo=HTML5&logoColor=white"/> <img alt="CSS3" src ="https://img.shields.io/badge/CSS3-FF9933.svg?&style=for-the-badge&logo=CSS3&logoColor=white"/> <img alt="JavaScript" src ="https://img.shields.io/badge/JavaScript-F7DF1E.svg?&style=for-the-badge&logo=JavaScript&logoColor=white"/>
 
-## 🐾 Tech Features
+## ☑️ 화면구성
+
+| todo 등록 전 |  todo 등록 후   |
+| :-------------------------------------------: | :------------: |
+|  <img width="329" src="https://github.com/eun0leee/mjff-clone/assets/90189513/cb43a959-1ee4-4cc0-931b-f45ec7269e12"/> |  <img width="329" src="https://github.com/eun0leee/mjff-clone/assets/90189513/5a766bad-bdff-4ece-afc2-07f24456eed9"/>|  
+
+## ☑️ 구현내용
 
 - [x] load, add, edit, delete To do for APIs
 - [x] load updated date
@@ -27,8 +33,21 @@ Here, [Demo site](https://resilient-jalebi-3f6ccb.netlify.app/) and [github repo
 - [x] widgets current location and weather
 - [x] moving cat gif file
 
-## 🐾 Notion document
-
-![화면 캡처 2022-12-07 153815](https://user-images.githubusercontent.com/90189513/206106815-fb01875a-4092-4833-bcc9-0ced2fec49c4.png)
-
-[notion document](https://eun0leee.notion.site/Fastcampus-3-Todo-list-web-site-f82467be72d7457bb105a5740c3b5c35)
+## ☑️ 구현내용 상세, 해결한 것, 회고
+## ☑️ 디렉토리 구조
+```
+┏ 📦css
+┃ ┣ #️⃣reset-css.css
+┃ ┗ 📜style.css
+┣ 📦js
+┃ ┣ 📜APIkey.js
+┃ ┣ 📜APIs.js
+┃ ┣ 📜clock.js
+┃ ┣ 📜location-and-weather.js
+┃ ┗ 📜main.js
+┗ ┗ 📜username.js
+┣ 📜index.html
+┣ 📜package-lock.json
+┣ 📜package.json
+┗ 📜README.md
+```
