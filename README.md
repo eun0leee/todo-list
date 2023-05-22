@@ -1,12 +1,12 @@
 # ☑️ window95 Todo-list ☑️
 
-Fastcampus 3차과제, window98 Todo-list 프로젝트입니다.
+window98 Todo-list 프로젝트는 Rest API를 사용하여 Vanilla JavaScript로 CRUD(Create, Read, Update, Delete)를 구현해보는 것을 중심으로하여, JavaScript의 메서드 및 내장함수에 익숙해지는 것 등 JavaScript로 웹페이지를 만드는데 익숙해지는 것을 목표로 만들어졌습니다. 사용자는 To-do list를 만들고 삭제하고 수정하고 조회하는 것을 해볼 수 있습니다. 추가로 Open Api를 사용하여 날씨와 지역, 시간을 볼 수 있습니다.
 
 ## ☑️ 사이트
 
 - [Demo Site](https://resilient-jalebi-3f6ccb.netlify.app/)
 
-![gif-800px](https://user-images.githubusercontent.com/90189513/205950510-2bd1466b-2862-44c8-92fb-af694174aa01.gif)
+![gif-800px](https://github.com/eun0leee/window98-Todo-list/assets/90189513/ee1b007e-d0a4-4daa-aaa9-8a1836748d53)
 
 
 ## ☑️ 프로젝트 기간
@@ -28,15 +28,15 @@ Fastcampus 3차과제, window98 Todo-list 프로젝트입니다.
 
 ## ☑️ 구현내용
 
-- [x] load, add, edit, delete To do for APIs
-- [x] load updated date
-- [x] check completed To do
-- [x] sort by latest
-- [x] when todo list is nothing, show text.
-- [x] user sign in and out for local storage
-- [x] widgets current time
-- [x] widgets current location and weather
-- [x] moving cat gif file
+- Rest API로 To-do를 추가, 조회, 수정, 삭제
+- 수정시 수정일시 변경
+- To-do가 없을 때 안내문구 표시
+- To-do를 체크하여 완료상태인 취소선 표시로 변경
+- 수정일시 최신순으로 정렬
+- 세가지 상태인 '완료된 To-do, 진행중인 To-do, 모두'로 필터
+- 사용자가 로그인하고 로그아웃하는 것은 로컬스토리지 사용
+- 현재 시간 위젯
+- 현재 지역과 날씨 위젯
 
 ## ☑️ 구현내용 상세, 해결한 것, 회고
 ## ☑️ 디렉토리 구조
