@@ -50,7 +50,7 @@ window98 Todo-list 프로젝트는 Rest API를 사용하여 Vanilla JavaScript�
 ┃ ┣ 📜clock.js
 ┃ ┣ 📜location-and-weather.js
 ┃ ┗ 📜main.js
-┗ ┗ 📜username.js
+┃ ┗ 📜username.js
 ┣ 📜index.html
 ┣ 📜package-lock.json
 ┣ 📜package.json
