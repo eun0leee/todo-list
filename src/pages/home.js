@@ -5,27 +5,27 @@ const Home = () => {
           <!-- icons -->
           <div class="background" aria-label="window95 version for background icons">
             <button class="background-icon">
-              <img src="./images/icon_my.png" alt="windows95 computer icon" />
+              <img src="./assets/icon_my.png" alt="windows95 computer icon" />
               <span>My Computer</span>
             </button>
             <button class="background-icon">
-              <img src="./images/icon_network.png" alt="windows95 network icon" />
+              <img src="./assets/icon_network.png" alt="windows95 network icon" />
               <span>Network<br />Neighborhood</span>
             </button>
             <button class="background-icon">
-              <img src="./images/icon_YouTube.png" alt="windows95 youtube icon" />
+              <img src="./assets/icon_YouTube.png" alt="windows95 youtube icon" />
               <span>YouTube</span>
             </button>
             <button class="background-icon">
-              <img src="./images/icon_bin.png" alt="windows95 Recycle Bin icon" />
+              <img src="./assets/icon_bin.png" alt="windows95 Recycle Bin icon" />
               <span>Recycle Bin</span>
             </button>
             <button class="background-icon">
-              <img src="./images/icon_Starbucks.png" alt="windows95 Starbucks icon" />
+              <img src="./assets/icon_Starbucks.png" alt="windows95 Starbucks icon" />
               <span>Starbucks</span>
             </button>
             <button class="background-icon iconTodo">
-              <img src="./images/icon_Todo.png" alt="windows95 memo icon" />
+              <img src="./assets/icon_Todo.png" alt="windows95 memo icon" />
               <span>Start Todo</span>
             </button>
           </div>
@@ -34,7 +34,7 @@ const Home = () => {
           <div class="taskbar" aria-label="window95 version graphics for taskbar">
             <div class="taskbar-btns">
               <button class="startbtn">
-                <img src="./images/icon_start.png" alt="windows95 icon" />
+                <img src="./assets/icon_start.png" alt="windows95 icon" />
                 Start
               </button>
               <span class="todobtn">Start Todo</span>
@@ -61,7 +61,7 @@ const Home = () => {
                 <h3 class="print-name hidden"></h3>
                 <button class="signoutbtn hidden">sign out</button>
               </div>
-              <img src="./images/gif_cat.gif" alt="walking cat" />
+              <img src="./assets/gif_cat.gif" alt="walking cat" />
             </div>
       
             <main class="workspace">
@@ -85,8 +85,8 @@ const Home = () => {
                   <button class="all-btn">All</button>
                 </div>
                 <div class="widgets-position">
-                  <span class="item location"><img src="./images/icon_location.svg" alt="current location" /></span>
-                  <span class="item weather"><img src="./images/icon_weather.svg" alt="current weather" /></span>
+                  <span class="item location"><img src="./assets/icon_location.svg" alt="current location" /></span>
+                  <span class="item weather"><img src="./assets/icon_weather.svg" alt="current weather" /></span>
                 </div>
               </div>
             </main>

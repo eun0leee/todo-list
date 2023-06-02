@@ -1,22 +1,16 @@
-import { TODO_KEY, POSITION_KEY, WEATHER_BASE_URL } from './APIkey.js';
+import { TODO_KEY, TODO_BASE_URL } from '/src/utils/APIkey.js';
 
-const APIKEY = TODO_KEY;
 const USERNAME = 'KDT3_LeeEunyoung';
 const HEADERS = {
   'content-type': 'application/json',
-  APIKEY: APIKEY,
+  APIKEY: TODO_KEY,
   username: USERNAME,
 };
 
-const APIURL =
-  'https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos';
-
-//////////////////// API ///////////////////////
-
 //get
-export async function getServerTodos() {
+const getServerTodos = async () => {
   try {
-    const res = await fetch(APIURL, {
+    const res = await fetch(TODO_BASE_URL, {
       method: 'GET',
       headers: HEADERS,
     });
@@ -25,12 +19,12 @@ export async function getServerTodos() {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 //add
-export async function addServerTodos(title, order) {
+const addServerTodos = async (title, order) => {
   try {
-    const res = await fetch(APIURL, {
+    const res = await fetch(TODO_BASE_URL, {
       method: 'POST',
       headers: HEADERS,
       body: JSON.stringify({
@@ -43,12 +37,12 @@ export async function addServerTodos(title, order) {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 //edit
-export async function editServerTodos(id, title, done = false, order = 0) {
+const editServerTodos = async (id, title, done = false, order = 0) => {
   try {
-    const res = await fetch(`${APIURL}/${id}`, {
+    const res = await fetch(`${TODO_BASE_URL}/${id}`, {
       method: 'PUT',
       headers: HEADERS,
       body: JSON.stringify({
@@ -62,12 +56,12 @@ export async function editServerTodos(id, title, done = false, order = 0) {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
 //delete
-export async function deleteServerTodos(id) {
+const deleteServerTodos = async (id) => {
   try {
-    const res = await fetch(`${APIURL}/${id}`, {
+    const res = await fetch(`${TODO_BASE_URL}/${id}`, {
       method: 'DELETE',
       headers: HEADERS,
     });
@@ -76,16 +70,6 @@ export async function deleteServerTodos(id) {
   } catch (error) {
     console.log(error);
   }
-}
+};
 
-export async function getServerWeather(lat, lon) {
-  const APIURLl = `${WEATHER_BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${POSITION_KEY}`;
-
-  try {
-    const res = await fetch(APIURLl);
-    const json = await res.json();
-    return json;
-  } catch (error) {
-    console.log(error);
-  }
-}
+export { getServerTodos, addServerTodos, editServerTodos, deleteServerTodos };

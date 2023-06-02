@@ -1,4 +1,4 @@
-import { getServerWeather } from './APIs';
+import { getServerWeather } from '/src/api/widgets';
 
 const getWeather = async (lat, lon) => {
   // api call
