@@ -1,14 +1,15 @@
-import { TODO_KEY } from "./APIkey.js";
+import { TODO_KEY, POSITION_KEY, WEATHER_BASE_URL } from './APIkey.js';
 
 const APIKEY = TODO_KEY;
-const USERNAME = "KDT3_LeeEunyoung";
+const USERNAME = 'KDT3_LeeEunyoung';
 const HEADERS = {
-  "content-type": "application/json",
+  'content-type': 'application/json',
   APIKEY: APIKEY,
   username: USERNAME,
 };
 
-const APIURL = "https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos";
+const APIURL =
+  'https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos';
 
 //////////////////// API ///////////////////////
 
@@ -16,7 +17,7 @@ const APIURL = "https://asia-northeast3-heropy-api.cloudfunctions.net/api/todos"
 export async function getServerTodos() {
   try {
     const res = await fetch(APIURL, {
-      method: "GET",
+      method: 'GET',
       headers: HEADERS,
     });
     const json = await res.json();
@@ -30,7 +31,7 @@ export async function getServerTodos() {
 export async function addServerTodos(title, order) {
   try {
     const res = await fetch(APIURL, {
-      method: "POST",
+      method: 'POST',
       headers: HEADERS,
       body: JSON.stringify({
         title: title,
@@ -48,7 +49,7 @@ export async function addServerTodos(title, order) {
 export async function editServerTodos(id, title, done = false, order = 0) {
   try {
     const res = await fetch(`${APIURL}/${id}`, {
-      method: "PUT",
+      method: 'PUT',
       headers: HEADERS,
       body: JSON.stringify({
         title: title,
@@ -67,9 +68,21 @@ export async function editServerTodos(id, title, done = false, order = 0) {
 export async function deleteServerTodos(id) {
   try {
     const res = await fetch(`${APIURL}/${id}`, {
-      method: "DELETE",
+      method: 'DELETE',
       headers: HEADERS,
     });
+    const json = await res.json();
+    return json;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getServerWeather(lat, lon) {
+  const APIURLl = `${WEATHER_BASE_URL}/weather?lat=${lat}&lon=${lon}&appid=${POSITION_KEY}`;
+
+  try {
+    const res = await fetch(APIURLl);
     const json = await res.json();
     return json;
   } catch (error) {

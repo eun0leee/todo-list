@@ -1,45 +1,35 @@
-import { POSITION_KEY } from "./APIkey.js";
+import { getServerWeather } from './APIs';
 
-const APIKEY = POSITION_KEY;
+const getWeather = async (lat, lon) => {
+  // api call
+  const data = await getServerWeather(lat, lon);
 
-navigator.geolocation.getCurrentPosition(success, error);
+  // render
+  const locationEl = document.querySelector('.location');
+  const weatherEl = document.querySelector('.weather');
+  const locationText = document.createElement('span');
+  locationText.className = 'text';
+  const weatherText = document.createElement('span');
+  weatherText.className = 'text';
 
-export function success(obj) {
-  const lat = obj.coords.latitude;
-  const lon = obj.coords.longitude;
+  const locationServerData = data.name;
+  const weatherServerData = data.weather[0].main;
+  locationText.innerText = locationServerData;
+  weatherText.innerText = weatherServerData;
 
-  getWeather(lat, lon);
-}
+  locationEl.append(locationText);
+  weatherEl.append(weatherText);
+};
 
-export async function getWeather(lat, lon) {
-  //api
-  const APIKEY = POSITION_KEY;
-  const APIURL = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${APIKEY}`;
+const success = (obj) => {
+  const latitude = obj.coords.latitude;
+  const longitude = obj.coords.longitude;
 
-  try {
-    const res = await fetch(APIURL);
-    const json = await res.json();
+  getWeather(latitude, longitude);
+};
 
-    //render
-    const locationEl = document.querySelector(".location");
-    const weatherEl = document.querySelector(".weather");
-    const locationText = document.createElement("span");
-    locationText.className = "text";
-    const weatherText = document.createElement("span");
-    weatherText.className = "text";
-
-    const locationServerData = json.name;
-    const weatherServerData = json.weather[0].main;
-    locationText.innerText = locationServerData;
-    weatherText.innerText = weatherServerData;
-
-    locationEl.append(locationText);
-    weatherEl.append(weatherText);
-  } catch (error) {
-    console.log(error);
-  }
-}
-
-export function error() {
+const error = () => {
   alert("we can't find you. TT. Allow location access.");
-}
+};
+
+export { success, error };
