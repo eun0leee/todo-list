@@ -10,7 +10,7 @@ import { success, error } from './js/location-and-weather.js';
 Home();
 
 // clock
-setInterval(clock, 1000, '.task-clock');
+setInterval(clock, 1000, '.taskbar-clock');
 
 // loacation and weather
 navigator.geolocation.getCurrentPosition(success, error);

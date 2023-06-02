@@ -1,10 +1,3 @@
-const loginformEl = document.querySelector(".form");
-const inputEl = loginformEl.querySelector("input");
-const usernameEl = document.querySelector(".username");
-const signoutBtn = document.querySelector(".signoutbtn");
-const HIDDEN = "hidden";
-const USER = "windows95 todo-list username";
-
 const userLocaldata = localStorage.getItem(USER);
 if (userLocaldata) {
   printUsername(userLocaldata);
@@ -13,7 +6,7 @@ if (userLocaldata) {
 }
 
 //sign in(input user name)
-loginformEl.addEventListener("submit", (e) => {
+loginformEl.addEventListener('submit', (e) => {
   e.preventDefault();
 
   const username = inputEl.value;
@@ -32,13 +25,24 @@ function printUsername(username) {
 }
 
 //sign out
-signoutBtn.addEventListener("click", signout);
+signoutBtn.addEventListener('click', signout);
 
 function signout() {
   localStorage.removeItem(USER);
 
-  inputEl.value = "";
+  inputEl.value = '';
   loginformEl.classList.remove(HIDDEN);
   usernameEl.classList.add(HIDDEN);
   signoutBtn.classList.add(HIDDEN);
 }
+
+const username = (form, input, username, signoutbtn) => {
+  const loginformEl = document.querySelector('.form');
+  const inputEl = loginformEl.querySelector('input');
+  const usernameEl = document.querySelector('.username');
+  const signoutBtn = document.querySelector('.signoutbtn');
+  const HIDDEN = 'hidden';
+  const USER = 'windows95 todo-list username';
+};
+
+export default username;

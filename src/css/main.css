@@ -33,7 +33,7 @@ textarea {
 
 /***************** BACKGROUND *****************/
 /* icons */
-.background-icons {
+.background {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -44,7 +44,7 @@ textarea {
   margin: 10px;
 }
 
-.icon {
+.background-icon {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -56,12 +56,12 @@ textarea {
   font-size: 15px;
 }
 
-.icon img {
+.background-icon img {
   width: 40px;
   margin-bottom: 7px;
 }
 
-.icon img,
+.background-icon img,
 span {
   cursor: pointer;
 }
@@ -84,12 +84,12 @@ span {
   background-color: #c0c0c0;
 }
 
-.task-btns {
+.taskbar-btns {
   display: flex;
   gap: 10px;
 }
 
-.task-btns .startbtn,
+.taskbar-btns .startbtn,
 .todobtn {
   display: flex;
   align-items: center;
@@ -101,19 +101,19 @@ span {
   cursor: pointer;
 }
 
-.task-btns .startbtn {
+.taskbar-btns .startbtn {
   width: 90px;
 
   border-style: outset;
 }
 
-.task-btns .startbtn img {
+.taskbar-btns .startbtn img {
   width: 25px;
   height: 25px;
   margin-right: 5px;
 }
 
-.task-btns .todobtn {
+.taskbar-btns .todobtn {
   width: 180px;
   border-style: inset;
   background-color: #eae7e7;
@@ -121,14 +121,14 @@ span {
   text-align: left;
 }
 
-.task-clock {
+.taskbar-clock {
   padding: 8px 20px;
 
   border: 3px inset #fff;
 }
 
-/***************** MODAL *****************/
-.modal {
+/***************** WINDOW *****************/
+.window {
   position: absolute;
   top: 45%;
   left: 50%;
@@ -156,7 +156,7 @@ span {
   font-weight: 700;
 }
 
-.titlebar__btn {
+.titlebar-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -183,27 +183,27 @@ span {
   margin: 15px 25px 10px 30px;
 }
 
-.greeting-box .signinout {
+.greeting-box .welcome {
+  margin-right: 30px;
+  font-size: 45px;
+  font-weight: 700;
+  text-align: left;
+}
+
+.greeting-box .username-box {
   display: flex;
   align-items: baseline;
 }
 
-.greeting-box .signinout .form input {
+.greeting-box .username-box .type-name-form input {
   height: 2em;
   padding-left: 8px;
   border: 3px inset #828080;
   background-color: #cdcaca;
 }
 
-.greeting-box .signinout .form input::placeholder {
+.greeting-box .username-box .type-name-form input::placeholder {
   color: #000;
-}
-
-.greeting-box .signinout .message {
-  margin-right: 30px;
-  font-size: 45px;
-  font-weight: 700;
-  text-align: left;
 }
 
 .greeting-box .username {
@@ -230,14 +230,14 @@ span {
 
 /***************** TODO *****************/
 /* add form */
-.todo__form {
+.todo-form {
   display: flex;
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 20px;
 }
 
-.todo__form .input {
+.todo-form .todo-add-input {
   width: 100%;
   height: 2em;
   padding: 5px;
@@ -247,36 +247,36 @@ span {
   font-size: 20px;
 }
 
-.todo__form .input-submit {
+.todo-form .todo-submit-input {
   padding: 0 10px;
   border: 3px outset #d1d0d0;
   background-color: #b9b5b5;
   cursor: pointer;
 }
 
-.todo__form .input-submit:active {
+.todo-form .todo-submit-input:active {
   border-style: inset;
 }
 
 /* list */
-.todo__ul {
+.todo-list {
   width: 560px;
   max-height: 325px;
   padding: 10px;
   overflow: auto;
 }
 
-.todo__ul .li {
+.todo-list .li {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.todo__ul .li + .li {
+.todo-list .li + .li {
   margin-top: 35px;
 }
 
-.todo__ul .li .todotext,
+.todo-list .li .todotext,
 .todotext_edit_Input {
   margin-right: 20px;
   font-size: 20px;
@@ -285,11 +285,11 @@ span {
   word-wrap: break-word;
 }
 
-.todo__ul .li .todotext {
+.todo-list .li .todotext {
   font-weight: 400;
 }
 
-.todo__ul .li .updatedAt,
+.todo-list .li .updatedAt,
 .editbtn,
 .deletebtn,
 .todotext_edit_ok,
@@ -298,28 +298,28 @@ span {
   color: #b9b7b7;
 }
 
-.todo__ul .li .updatedAt,
+.todo-list .li .updatedAt,
 .editbtn {
   margin-right: 8px;
 }
 
-.todo__ul .li .updatedAt {
+.todo-list .li .updatedAt {
   padding-top: 3px;
   white-space: nowrap;
 }
 
-.todo__ul .li .editbtn,
+.todo-list .li .editbtn,
 .deletebtn {
   font-weight: 700;
   cursor: pointer;
 }
 
 /* check box */
-.todo__ul .li .checkbox {
+.todo-list .li .checkbox {
   display: none;
 }
 
-.todo__ul .li label {
+.todo-list .li label {
   position: relative;
 
   min-width: 12px;
@@ -331,7 +331,7 @@ span {
   cursor: pointer;
 }
 
-.todo__ul .li .checkbox:checked + label::before {
+.todo-list .li .checkbox:checked + label::before {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -347,7 +347,7 @@ span {
   text-decoration: line-through;
 }
 
-.zerolength {
+.empty-todo {
   margin-top: 40px;
   font-size: 30px;
   text-align: center;
