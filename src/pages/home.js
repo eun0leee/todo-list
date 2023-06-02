@@ -51,13 +51,14 @@ const Home = () => {
             </div>
             <!-- greeting -->
             <div class="greeting-box">
-              <h2 class="welcome">Welcome!</h2>
+              
             <!-- username -->
               <div class="username-box">
+                <h2 class="welcome">Welcome!</h2>
                 <form action="" class="type-name-form hidden">
                   <input required maxlength="10" type="text" placeholder="What is your name?" autofocus />
                 </form>
-                <h3 class="username hidden"></h3>
+                <h3 class="print-name hidden"></h3>
                 <button class="signoutbtn hidden">sign out</button>
               </div>
               <img src="./images/gif_cat.gif" alt="walking cat" />
