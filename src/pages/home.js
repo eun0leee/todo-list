@@ -1,4 +1,4 @@
-const home = () => {
+const Home = () => {
   const rootEl = document.createElement('div');
   rootEl.innerHTML = `<!------------------ BACKGROUND ------------------>
           <!-- icons -->
@@ -96,4 +96,4 @@ const home = () => {
   app.append(rootEl);
 };
 
-export default home;
+export default Home;
