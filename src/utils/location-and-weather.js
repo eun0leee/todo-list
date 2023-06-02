@@ -32,4 +32,6 @@ const error = () => {
   alert("we can't find you. TT. Allow location access.");
 };
 
+navigator.geolocation.getCurrentPosition(success, error);
+
 export { success, error };

@@ -1,20 +1,21 @@
 import './reset-css.css';
 import './main.css';
 
+import {
+  getServerTodos,
+  addServerTodos,
+  editServerTodos,
+  deleteServerTodos,
+} from '/src/api/todo.js';
+
 import Home from '/src/pages/Home.js';
 
 import clock from '/src/utils/clock.js';
 import { success, error } from '/src/utils/location-and-weather.js';
 import username from '/src/utils/username.js';
 
-// main home markup
+//main home markup
 Home();
-
-// clock
-setInterval(clock, 1000, '.taskbar-clock');
-
-// loacation and weather
-navigator.geolocation.getCurrentPosition(success, error);
 
 // username
 const signinFormEl = document.querySelector('.type-name-form');

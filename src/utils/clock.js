@@ -7,4 +7,6 @@ const clock = (element) => {
   clockEl.innerText = `${hours}:${minutes}:${seconds}`;
 };
 
+setInterval(clock, 1000, '.taskbar-clock');
+
 export default clock;
