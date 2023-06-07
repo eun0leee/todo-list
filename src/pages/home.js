@@ -1,6 +1,8 @@
+import { handleGetTodos, handleAddTodos } from '/src/utils/todo.js';
+
 const Home = () => {
-  const rootEl = document.createElement('div');
-  rootEl.innerHTML = `
+  const homePage = document.createElement('div');
+  homePage.innerHTML = `
           <!------------------ BACKGROUND ------------------>
           <!-- icons -->
           <div class="background" aria-label="window95 version for background icons">
@@ -95,7 +97,45 @@ const Home = () => {
           <div class="loading"></div>`;
 
   const app = document.querySelector('#root');
-  app.append(rootEl);
+  app.append(homePage);
+
+  // init
+  const loadingEl = document.querySelector('.loading');
+  const todoFormEl = document.querySelector('.todo-form');
+
+  const todoUlEl = document.querySelector('.todo-list');
+  const emptyMessageEl = document.querySelector('.empty-todo');
+
+  // get
+  handleGetTodos(loadingEl, todoUlEl, emptyMessageEl);
+
+  // add
+  todoFormEl.addEventListener('submit', handleAddTodos);
+
+  //filter
+  // const onlyTodo = document.querySelector('.onlytodo-btn');
+  // const onlyDone = document.querySelector('.onlydone-btn');
+  // const allBtn = document.querySelector('.all-btn');
+
+  // onlyTodo.addEventListener('click', async () => {
+  //   todoUlEl.innerHTML = '';
+  //   let getData = await getServerTodos();
+  //   let filterTodoData = getData.filter((el) => el.done == false);
+  //   getTodos(filterTodoData);
+  // });
+
+  // onlyDone.addEventListener('click', async () => {
+  //   todoUlEl.innerHTML = '';
+  //   let getData = await getServerTodos();
+  //   let filterDoneData = getData.filter((el) => el.done == true);
+  //   getTodos(filterDoneData);
+  // });
+
+  // allBtn.addEventListener('click', async () => {
+  //   todoUlEl.innerHTML = '';
+  //   let getData = await getServerTodos();
+  //   getTodos(getData);
+  // });
 };
 
 export default Home;

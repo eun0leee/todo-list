@@ -1,13 +1,6 @@
 import './reset-css.css';
 import './main.css';
 
-import {
-  getServerTodos,
-  addServerTodos,
-  editServerTodos,
-  deleteServerTodos,
-} from '/src/api/todo.js';
-
 import Home from '/src/pages/Home.js';
 
 import clock from '/src/utils/clock.js';
@@ -17,9 +10,10 @@ import username from '/src/utils/username.js';
 //main home markup
 Home();
 
-// username
+//username
 const signinFormEl = document.querySelector('.type-name-form');
 const signinInputEl = signinFormEl.querySelector('input');
 const printNameEl = document.querySelector('.print-name');
 const signoutBtn = document.querySelector('.signoutbtn');
+
 username(signinFormEl, signinInputEl, printNameEl, signoutBtn);

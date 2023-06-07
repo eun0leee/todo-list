@@ -266,17 +266,17 @@ span {
   overflow: auto;
 }
 
-.todo-list .li {
+.todo-list li {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.todo-list .li + .li {
+.todo-list li + li {
   margin-top: 35px;
 }
 
-.todo-list .li .todotext,
+.todo-list li .textValue,
 .todotext_edit_Input {
   margin-right: 20px;
   font-size: 20px;
@@ -285,41 +285,41 @@ span {
   word-wrap: break-word;
 }
 
-.todo-list .li .todotext {
+.todo-list li .textValue {
   font-weight: 400;
 }
 
-.todo-list .li .updatedAt,
+.todo-list li .updatedAt,
 .editbtn,
 .deletebtn,
-.todotext_edit_ok,
-.todotext_edit_cancel {
+.todoedit-form-okbtn,
+.todoedit-form-cancelbtn {
   font-size: 16px;
   color: #b9b7b7;
 }
 
-.todo-list .li .updatedAt,
+.todo-list li .updatedAt,
 .editbtn {
   margin-right: 8px;
 }
 
-.todo-list .li .updatedAt {
+.todo-list li .updatedAt {
   padding-top: 3px;
   white-space: nowrap;
 }
 
-.todo-list .li .editbtn,
+.todo-list li .editbtn,
 .deletebtn {
   font-weight: 700;
   cursor: pointer;
 }
 
 /* check box */
-.todo-list .li .checkbox {
+.todo-list li .checkbox {
   display: none;
 }
 
-.todo-list .li label {
+.todo-list li label {
   position: relative;
 
   min-width: 12px;
@@ -331,7 +331,7 @@ span {
   cursor: pointer;
 }
 
-.todo-list .li .checkbox:checked + label::before {
+.todo-list li .checkbox:checked + label::before {
   position: absolute;
   top: 2px;
   left: 2px;
@@ -343,7 +343,7 @@ span {
   background-color: #000;
 }
 
-.text__deco {
+.text-deco {
   text-decoration: line-through;
 }
 
@@ -356,17 +356,17 @@ span {
 }
 
 /* edit mode */
-.todotext_edit_text {
+.todoedit-form-value {
   width: 370px;
   font-size: 20px;
 }
 
-.todotext_edit_ok {
+.todoedit-form-okbtn {
   margin-right: 8px;
   margin-bottom: 2px;
 }
 
-.todotext_edit_cancel {
+.todoedit-form-cancelbtn {
   margin-bottom: 3px;
 }
 
