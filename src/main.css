@@ -215,7 +215,8 @@ span {
   font-size: 20px;
 }
 
-.greeting-box .signoutbtn {
+.greeting-box .signoutbtn,
+.signinbtn {
   font-size: 15px;
   color: #797676;
 }

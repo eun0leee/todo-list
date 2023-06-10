@@ -59,9 +59,10 @@ const Home = () => {
                 <h2 class="welcome">Welcome!</h2>
                 <form action="" class="type-name-form hidden">
                   <input required maxlength="10" type="text" placeholder="What is your name?" autofocus />
+                  <button class="signinbtn" type="submit">sign in</button>
                 </form>
                 <h3 class="print-name hidden"></h3>
-                <button class="signoutbtn hidden">sign out</button>
+                <button class="signoutbtn hidden" type="button">sign out</button>
               </div>
               <img src="./assets/gif_cat.gif" alt="walking cat" />
             </div>
