@@ -5,7 +5,7 @@ import {
   deleteServerTodos,
 } from '/src/api/todo.js';
 
-import { showLoading, hideLoading } from '/src/utils/store';
+import { showLoading, hideLoading, showEl, hideEl } from '/src/utils/store';
 
 import renderTodoList from '/src/utils/render.js';
 
@@ -15,13 +15,12 @@ const handleGetTodos = async (loadingEl, todoUlEl, emptyMessageEl) => {
   showLoading(loadingEl);
   try {
     //업데이트순 정렬
-    let sortedData = data.sort((a, b) => {
+    const sortedData = data.sort((a, b) => {
       return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
     });
     //서버 todo list 아예 없을 떄와 있을 때
     if (data.length == 0) {
-      emptyMessageEl.style.display = 'block';
-      todoUlEl.prepend(emptyMessageEl);
+      showEl(emptyMessageEl);
     } else if (data.length !== 0) {
       sortedData.forEach((item) => renderTodoList(item, todoUlEl));
     }
@@ -36,9 +35,12 @@ const handleAddTodos = async (e) => {
   e.preventDefault();
   try {
     const todoUlEl = e.target.nextSibling.nextSibling;
-    let todoValue = e.target[0].value;
+    const todoValue = e.target[0].value;
+    const emptyMessageEl =
+      e.target.nextElementSibling.querySelector('.empty-todo');
     // input 에 값 입력 했을 때
     if (todoValue !== '') {
+      hideEl(emptyMessageEl);
       const newKeyword = todoValue;
       // input 값 비우기
       e.target[0].value = '';
@@ -46,7 +48,7 @@ const handleAddTodos = async (e) => {
       let data = await addServerTodos(newKeyword);
       renderTodoList(data, todoUlEl);
     } else {
-      console.log('please type your Todo');
+      alert('please type your Todo ⌨️ !');
     }
   } catch (error) {
     console.log(error);
@@ -57,10 +59,16 @@ const handleAddTodos = async (e) => {
 const handleDeleteTodo = async (e) => {
   try {
     const todoLiEl = e.target.parentElement;
+    const emptyMessageEl = document.querySelector('.empty-todo');
     // 화면상 todo list 삭제
     todoLiEl.remove();
     // 서버상 todo list 삭제
     await deleteServerTodos(todoLiEl.id);
+    // 모두 삭제 됐을 때, 문구표시
+    const data = await getServerTodos();
+    if (data.length === 0) {
+      showEl(emptyMessageEl);
+    }
   } catch (error) {
     console.log(error);
   }

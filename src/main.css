@@ -31,6 +31,10 @@ textarea {
   display: none;
 }
 
+.show {
+  display: block;
+}
+
 /***************** BACKGROUND *****************/
 /* icons */
 .background {
@@ -348,9 +352,10 @@ span {
 }
 
 .empty-todo {
+  width: 100%;
   margin-top: 40px;
-  font-size: 30px;
   text-align: center;
+  font-size: 30px;
   color: #828080;
   line-height: 1.5;
 }

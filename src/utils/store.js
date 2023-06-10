@@ -6,4 +6,14 @@ const hideLoading = (element) => {
   element.classList.remove('active');
 };
 
-export { showLoading, hideLoading };
+const showEl = (element) => {
+  element.classList.add('show');
+  element.classList.remove('hidden');
+};
+
+const hideEl = (element) => {
+  element.classList.add('hidden');
+  element.classList.remove('show');
+};
+
+export { showLoading, hideLoading, showEl, hideEl };

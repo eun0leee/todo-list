@@ -70,14 +70,15 @@ const Home = () => {
               <!------------------ TODO ------------------>
               <div class="todo">
                 <form class="todo-form">
-                  <strong class="empty-todo hidden">
+                  <input class="todo-add-input" type="text" placeholder="type..." />
+                  <input class="todo-submit-input" type="submit" value="add" />
+                </form>
+                <ul class="todo-list">
+                <strong class="empty-todo hidden">
                     Type your first Todo.<br />
                     Then you can get🍀
                   </strong>
-                  <input class="todo-add-input" type="text" placeholder="type..." />
-                  <input class="todo-submit-input" type="button" value="add" />
-                </form>
-                <ul class="todo-list"></ul>
+                </ul>
               </div>
               <!------------------ WIDGETS ------------------>
               <div class="widgets">
@@ -102,7 +103,6 @@ const Home = () => {
   // init
   const loadingEl = document.querySelector('.loading');
   const todoFormEl = document.querySelector('.todo-form');
-
   const todoUlEl = document.querySelector('.todo-list');
   const emptyMessageEl = document.querySelector('.empty-todo');
 
