@@ -79,6 +79,8 @@ const handleEditTodo = (e) => {
   const todoUlEl = e.target.closest('ul');
   const todoLiEl = e.target.parentElement;
   const todoText = todoLiEl.querySelector('.textValue');
+  const loadingEl = document.querySelector('.loading');
+  const emptyMessageEl = document.querySelector('.empty-todo');
 
   // 수정 폼 열기
   todoLiEl.innerHTML = `<form action="GET" class="todoedit-form">
@@ -87,15 +89,23 @@ const handleEditTodo = (e) => {
     <button class="todoedit-form-cancelbtn" type="button" value="cancel">cancel</button>
     </form>`;
 
-  // 수정중 submit
   const editForm = todoLiEl.querySelector('.todoedit-form');
   const editInput = todoLiEl.querySelector('.todoedit-form-value');
-  editForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    completedEdit(e, editInput.value);
-  });
+  const editCancelBtn = todoLiEl.querySelector('.todoedit-form-cancelbtn');
 
   // 수정 완료
+  editForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (todoText.innerText !== editInput.value) {
+      completedEdit(e, editInput.value);
+    } else {
+      alert('Nothing has changed! 🧐');
+    }
+  });
+
+  // 수정 취소
+  editCancelBtn.addEventListener('click', () => cancelEdit());
+
   const completedEdit = async (e, text, done) => {
     const todoLiEl = e.target.parentElement;
     const data = await editServerTodos(todoLiEl.id, text, done);
@@ -103,9 +113,10 @@ const handleEditTodo = (e) => {
     renderTodoList(data, todoUlEl);
   };
 
-  // 수정중 cancel
-  const editCancelBtn = todoLiEl.querySelector('.todoedit-form-cancelbtn');
-  editCancelBtn.addEventListener('click', () => console.log('폼닫기 구현필요'));
+  const cancelEdit = async () => {
+    todoUlEl.innerHTML = '';
+    handleGetTodos(loadingEl, todoUlEl, emptyMessageEl);
+  };
 };
 
 export { handleGetTodos, handleAddTodos, handleDeleteTodo, handleEditTodo };
