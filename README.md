@@ -4,10 +4,9 @@ window98 Todo-list 프로젝트는 Rest API를 사용하여 Vanilla JavaScript�
 
 ## ☑️ 사이트
 
-- [Demo Site](https://resilient-jalebi-3f6ccb.netlify.app/)
+- [Demo Site](window98-todolist-with-kitty.netlify.app)
 
 ![gif-800px](https://github.com/eun0leee/window98-Todo-list/assets/90189513/ee1b007e-d0a4-4daa-aaa9-8a1836748d53)
-
 
 ## ☑️ 프로젝트 기간
 
@@ -19,12 +18,11 @@ window98 Todo-list 프로젝트는 Rest API를 사용하여 Vanilla JavaScript�
 
 ## ☑️ 화면구성
 
-| todo 등록 전 |
-| :-------------------------------------------: |
-|  <img width="700" src="https://github.com/eun0leee/window98-Todo-list/assets/90189513/8477e226-486a-438b-9495-9cf23f35dbb0"/>|  
-| todo 등록 후 |  
+|                                                         todo 등록 전                                                         |
+| :--------------------------------------------------------------------------------------------------------------------------: |
+| <img width="700" src="https://github.com/eun0leee/window98-Todo-list/assets/90189513/8477e226-486a-438b-9495-9cf23f35dbb0"/> |
+|                                                         todo 등록 후                                                         |
 | <img width="700" src="https://github.com/eun0leee/window98-Todo-list/assets/90189513/91ee9dab-a072-4d7f-b859-7aaadb1e1bf6"/> |
-
 
 ## ☑️ 구현내용
 
@@ -39,15 +37,17 @@ window98 Todo-list 프로젝트는 Rest API를 사용하여 Vanilla JavaScript�
 - 현재 지역과 날씨 위젯
 
 ## ☑️ 구현내용 상세, 해결한 것, 회고
-* 자세한 내용은 블로그 포스팅에서 보실 수 있습니다
-  * [Vaniila JS로 To-do 사이트 만들기(CRUD 구현, Rest API 활용)](https://velog.io/@eun0leee/todo)
-* 주요 구현 내용 포스팅
-  * [[JS] Vanilla JS로 To-do 사이트 만들 때, API 연동하기(fetch 방식)](https://velog.io/@eun0leee/JS-To-do-사이트-만들-때-API-연동하기)
-  * [[JS] Vanilla JS로 To-do list 수정 구현하기](https://velog.io/@eun0leee/JS-Vanilla-JS로-To-do-list-수정-구현하기)
-  * [[CSS] 한글만 다른 폰트 적용하기](https://velog.io/@eun0leee/CSS-다른-폰트-적용)
-  * [[CSS] input checkbox 스타일 적용하기](https://velog.io/@eun0leee/CSS-input-checkbox-스타일-적용하기)
+
+- 자세한 내용은 블로그 포스팅에서 보실 수 있습니다
+  - [Vaniila JS로 To-do 사이트 만들기(CRUD 구현, Rest API 활용)](https://velog.io/@eun0leee/todo)
+- 주요 구현 내용 포스팅
+  - [[JS] Vanilla JS로 To-do 사이트 만들 때, API 연동하기(fetch 방식)](https://velog.io/@eun0leee/JS-To-do-사이트-만들-때-API-연동하기)
+  - [[JS] Vanilla JS로 To-do list 수정 구현하기](https://velog.io/@eun0leee/JS-Vanilla-JS로-To-do-list-수정-구현하기)
+  - [[CSS] 한글만 다른 폰트 적용하기](https://velog.io/@eun0leee/CSS-다른-폰트-적용)
+  - [[CSS] input checkbox 스타일 적용하기](https://velog.io/@eun0leee/CSS-input-checkbox-스타일-적용하기)
 
 ## ☑️ 디렉토리 구조
+
 ```
 ┏ 📦css
 ┃ ┣ #️⃣reset-css.css
