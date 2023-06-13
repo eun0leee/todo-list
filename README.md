@@ -4,7 +4,7 @@ window98 Todo-list 프로젝트는 Rest API를 사용하여 Vanilla JavaScript�
 
 ## ☑️ 사이트
 
-- [Demo Site](window98-todolist-with-kitty.netlify.app)
+- [Demo Site](https://window98-todolist-with-kitty.netlify.app/)
 
 ![gif-800px](https://github.com/eun0leee/window98-Todo-list/assets/90189513/ee1b007e-d0a4-4daa-aaa9-8a1836748d53)
 
