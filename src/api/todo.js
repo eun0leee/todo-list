@@ -1,4 +1,5 @@
-import { TODO_KEY, TODO_BASE_URL } from '/src/utils/APIkey.js';
+const TODO_KEY = process.env.TODO_KEY;
+const TODO_BASE_URL = process.env.TODO_BASE_URL;
 
 const USERNAME = 'KDT3_LeeEunyoung';
 const HEADERS = {

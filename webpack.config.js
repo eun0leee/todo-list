@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const webpackMode = process.env.NODE_ENV || 'development';
 
@@ -71,5 +72,6 @@ module.exports = {
         { from: './src/assets', to: './assets' },
       ],
     }),
+    new Dotenv(),
   ],
 };
