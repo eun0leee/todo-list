@@ -18,7 +18,7 @@ const handleGetTodos = async (loadingEl, todoUlEl, emptyMessageEl) => {
     const sortedData = data.sort((a, b) => {
       return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
     });
-    //서버 todo list 아예 없을 떄와 있을 때
+    //서버 todo list 아예 없을 때와 있을 때
     if (data.length == 0) {
       showEl(emptyMessageEl);
     } else if (data.length !== 0) {
@@ -93,7 +93,7 @@ const handleEditTodo = (e) => {
   const editInput = todoLiEl.querySelector('.todoedit-form-value');
   const editCancelBtn = todoLiEl.querySelector('.todoedit-form-cancelbtn');
 
-  // 수정 완료
+  // 수정 완료 이벤트
   editForm.addEventListener('submit', (e) => {
     e.preventDefault();
     if (todoText.innerText !== editInput.value) {
@@ -103,7 +103,7 @@ const handleEditTodo = (e) => {
     }
   });
 
-  // 수정 취소
+  // 수정 취소 이벤트
   editCancelBtn.addEventListener('click', () => cancelEdit());
 
   const completedEdit = async (e, text, done) => {
@@ -119,4 +119,23 @@ const handleEditTodo = (e) => {
   };
 };
 
-export { handleGetTodos, handleAddTodos, handleDeleteTodo, handleEditTodo };
+// check
+const handleCheckTodo = async (e) => {
+  const todoUlEl = e.target.closest('ul');
+  const todoLiEl = e.target.parentElement;
+  const data = await editServerTodos(
+    todoLiEl.id,
+    todoLiEl.querySelector('.textValue').innerText,
+    e.target.checked
+  );
+  todoLiEl.remove();
+  renderTodoList(data, todoUlEl);
+};
+
+export {
+  handleGetTodos,
+  handleAddTodos,
+  handleDeleteTodo,
+  handleEditTodo,
+  handleCheckTodo,
+};
