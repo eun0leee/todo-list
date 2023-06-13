@@ -14,6 +14,7 @@ body {
   background-color: #a585d4;
   font-family: 'DungGeunMo', 'DotGothic16', sans-serif;
   letter-spacing: 1.2px;
+  cursor: url('assets/icon_cursor.svg'), auto;
 }
 
 button,
@@ -320,7 +321,7 @@ span {
 }
 
 /* check box */
-.todo-list li .checkbox {
+.todo-list li .checkInput {
   display: none;
 }
 
@@ -336,7 +337,7 @@ span {
   cursor: pointer;
 }
 
-.todo-list li .checkbox:checked + label::before {
+.todo-list li .checkInput:checked + label::before {
   position: absolute;
   top: 2px;
   left: 2px;
