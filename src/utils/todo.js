@@ -22,23 +22,21 @@ const handleGetTodos = async (filterType) => {
   try {
     const data = await getServerTodos();
 
+    // 업데이트순 정렬
+    const sortedData = data.sort((a, b) => {
+      return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
+    });
+
+    // ul classlist 에 filter 관련 있으면 필터
+    const renderData = filterType
+      ? sortedData.filter((el) => el.done === (filterType !== 'onlytodo-btn'))
+      : sortedData;
+
     //서버 todo list 아예 없을 때와 있을 때
-    if (data.length == 0) {
+    if (renderData.length === 0) {
       showEl(emptyMessageEl);
     } else {
-      // 업데이트순 정렬
-      const sortedData = data.sort((a, b) => {
-        return (
-          new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
-        );
-      });
-
-      // todolist 필터
-      const renderData = filterType
-        ? sortedData.filter((el) => el.done === (filterType !== 'notDone'))
-        : sortedData;
-
-      // 조건에 따라 render
+      hideEl(emptyMessageEl);
       renderData.forEach((item) => renderTodoList(item));
     }
 
@@ -154,20 +152,14 @@ const handleCheckTodo = async (e) => {
 
 // filter
 const handleFilter = (e) => {
+  const todoLiEl = todoUlEl.querySelectorAll('li');
+  todoLiEl.forEach((li) => {
+    li.remove();
+  });
   const targetClassName = e.target.className;
-  todoUlEl.innerHTML = '';
-  todoUlEl.classList.add(targetClassName);
-  switch (targetClassName) {
-    case 'onlytodo-btn':
-      handleGetTodos('notDone');
-      break;
-    case 'onlydone-btn':
-      handleGetTodos('done');
-      break;
-    case 'all-btn':
-      handleGetTodos();
-      break;
-  }
+  targetClassName === 'all-btn'
+    ? handleGetTodos()
+    : handleGetTodos(targetClassName);
 };
 
 export {
