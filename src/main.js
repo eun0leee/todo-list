@@ -8,7 +8,7 @@ import {
   handleGetTodos,
   handleAddTodos,
   handleFilter,
-} from '/src/utils/todo.js';
+} from '/src/utils/handleTodo.js';
 
 (() => {
   //username

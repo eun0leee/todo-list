@@ -2,7 +2,7 @@ import {
   handleDeleteTodo,
   handleEditTodo,
   handleCheckTodo,
-} from '/src/utils/todo.js';
+} from '/src/utils/handleTodo.js';
 
 import { todoUlEl } from '/src/utils/store';
 
