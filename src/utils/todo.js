@@ -132,7 +132,6 @@ const handleEditTodo = (e) => {
 const handleCheckTodo = async (e) => {
   const todoLiEl = e.target.parentElement;
   const isChecked = e.target.checked;
-  console.log(todoLiEl, isChecked);
   const data = await editServerTodos(
     todoLiEl.id,
     todoLiEl.querySelector('.textValue').innerText,
