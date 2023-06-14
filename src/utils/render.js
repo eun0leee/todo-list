@@ -4,7 +4,9 @@ import {
   handleCheckTodo,
 } from '/src/utils/todo.js';
 
-const renderTodoList = (data, todoUlEl) => {
+import { todoUlEl } from './store';
+
+const renderTodoList = (data) => {
   const liEl = document.createElement('li');
   liEl.id = data.id;
 
@@ -27,10 +29,13 @@ const renderTodoList = (data, todoUlEl) => {
 
   todoUlEl.prepend(liEl);
 
-  // 체크여부에 따른 텍스트 스타일 설정
+  // init
   const checkBtn = document.querySelector('.checkInput');
   const todoText = document.querySelector('.textValue');
+  const editBtn = document.querySelector('.editbtn');
+  const deleteBtn = document.querySelector('.deletebtn');
 
+  // 체크여부에 따른 텍스트 스타일 설정
   if (data.done) {
     checkBtn.checked = true;
     todoText.classList.add('text-deco');
@@ -40,11 +45,9 @@ const renderTodoList = (data, todoUlEl) => {
   checkBtn.addEventListener('click', handleCheckTodo);
 
   // 수정 버튼 이벤트
-  const editBtn = document.querySelector('.editbtn');
   editBtn.addEventListener('click', handleEditTodo);
 
   // 삭제 버튼 이벤트
-  const deleteBtn = document.querySelector('.deletebtn');
   deleteBtn.addEventListener('click', handleDeleteTodo);
 };
 
