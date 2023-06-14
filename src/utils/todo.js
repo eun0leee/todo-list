@@ -133,19 +133,30 @@ const handleEditTodo = (e) => {
 // check
 const handleCheckTodo = async (e) => {
   const todoLiEl = e.target.parentElement;
+  const isChecked = e.target.checked;
   const data = await editServerTodos(
     todoLiEl.id,
     todoLiEl.querySelector('.textValue').innerText,
-    e.target.checked
+    isChecked
   );
+
+  // filter 걸려있을 때, 체크하면 목록에서 제거만 됨.
   todoLiEl.remove();
-  renderTodoList(data);
+
+  if (
+    todoUlEl.classList.contains('onlytodo-btn') ||
+    todoUlEl.classList.contains('onlydone-btn')
+  ) {
+  } else {
+    renderTodoList(data);
+  }
 };
 
 // filter
 const handleFilter = (e) => {
   const targetClassName = e.target.className;
   todoUlEl.innerHTML = '';
+  todoUlEl.classList.add(targetClassName);
   switch (targetClassName) {
     case 'onlytodo-btn':
       handleGetTodos('notDone');
