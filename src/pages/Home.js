@@ -106,6 +106,7 @@ const Home = () => {
   const todoFormEl = document.querySelector('.todo-form');
   const todoUlEl = document.querySelector('.todo-list');
   const emptyMessageEl = document.querySelector('.empty-todo');
+  const filterBtn = document.querySelector('.widgets-btns');
 
   // get
   handleGetTodos(loadingEl, todoUlEl, emptyMessageEl);
@@ -113,30 +114,22 @@ const Home = () => {
   // add
   todoFormEl.addEventListener('submit', handleAddTodos);
 
-  //filter
-  // const onlyTodo = document.querySelector('.onlytodo-btn');
-  // const onlyDone = document.querySelector('.onlydone-btn');
-  // const allBtn = document.querySelector('.all-btn');
-
-  // onlyTodo.addEventListener('click', async () => {
-  //   todoUlEl.innerHTML = '';
-  //   let getData = await getServerTodos();
-  //   let filterTodoData = getData.filter((el) => el.done == false);
-  //   getTodos(filterTodoData);
-  // });
-
-  // onlyDone.addEventListener('click', async () => {
-  //   todoUlEl.innerHTML = '';
-  //   let getData = await getServerTodos();
-  //   let filterDoneData = getData.filter((el) => el.done == true);
-  //   getTodos(filterDoneData);
-  // });
-
-  // allBtn.addEventListener('click', async () => {
-  //   todoUlEl.innerHTML = '';
-  //   let getData = await getServerTodos();
-  //   getTodos(getData);
-  // });
+  // filter
+  filterBtn.addEventListener('click', (e) => {
+    const targetClassName = e.target.className;
+    todoUlEl.innerHTML = '';
+    switch (targetClassName) {
+      case 'onlytodo-btn':
+        handleGetTodos(loadingEl, todoUlEl, emptyMessageEl, 'notDone');
+        break;
+      case 'onlydone-btn':
+        handleGetTodos(loadingEl, todoUlEl, emptyMessageEl, 'done');
+        break;
+      case 'all-btn':
+        handleGetTodos(loadingEl, todoUlEl, emptyMessageEl);
+        break;
+    }
+  });
 };
 
 export default Home;

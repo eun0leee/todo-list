@@ -10,20 +10,37 @@ import { showLoading, hideLoading, showEl, hideEl } from '/src/utils/store';
 import renderTodoList from '/src/utils/render.js';
 
 // get
-const handleGetTodos = async (loadingEl, todoUlEl, emptyMessageEl) => {
-  const data = await getServerTodos();
+const handleGetTodos = async (
+  loadingEl,
+  todoUlEl,
+  emptyMessageEl,
+  filterType
+) => {
   showLoading(loadingEl);
+
   try {
-    //업데이트순 정렬
-    const sortedData = data.sort((a, b) => {
-      return new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime();
-    });
+    const data = await getServerTodos();
+
     //서버 todo list 아예 없을 때와 있을 때
     if (data.length == 0) {
       showEl(emptyMessageEl);
-    } else if (data.length !== 0) {
-      sortedData.forEach((item) => renderTodoList(item, todoUlEl));
+    } else {
+      // 업데이트순 정렬
+      const sortedData = data.sort((a, b) => {
+        return (
+          new Date(a.updatedAt).getTime() - new Date(b.updatedAt).getTime()
+        );
+      });
+
+      // todolist 필터
+      const renderData = filterType
+        ? sortedData.filter((el) => el.done === (filterType !== 'notDone'))
+        : sortedData;
+
+      // 조건에 따라 render
+      renderData.forEach((item) => renderTodoList(item, todoUlEl));
     }
+
     hideLoading(loadingEl);
   } catch (error) {
     console.log(error);
