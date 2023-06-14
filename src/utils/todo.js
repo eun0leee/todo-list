@@ -132,6 +132,7 @@ const handleEditTodo = (e) => {
 const handleCheckTodo = async (e) => {
   const todoLiEl = e.target.parentElement;
   const isChecked = e.target.checked;
+  console.log(todoLiEl, isChecked);
   const data = await editServerTodos(
     todoLiEl.id,
     todoLiEl.querySelector('.textValue').innerText,
@@ -141,25 +142,33 @@ const handleCheckTodo = async (e) => {
   // filter 걸려있을 때, 체크하면 목록에서 제거만 됨.
   todoLiEl.remove();
 
-  if (
-    todoUlEl.classList.contains('onlytodo-btn') ||
-    todoUlEl.classList.contains('onlydone-btn')
-  ) {
-  } else {
-    renderTodoList(data);
-  }
+  todoUlEl.classList.contains('onlytodo-btn') ||
+  todoUlEl.classList.contains('onlydone-btn')
+    ? ''
+    : renderTodoList(data);
+
+  todoUlEl.querySelector('li') === null
+    ? showEl(emptyMessageEl)
+    : hideEl(emptyMessageEl);
 };
 
 // filter
 const handleFilter = (e) => {
   const todoLiEl = todoUlEl.querySelectorAll('li');
+
+  // ul 에서 li만 삭제
   todoLiEl.forEach((li) => {
     li.remove();
   });
+
+  // className 에 따른 함수 인자
   const targetClassName = e.target.className;
   targetClassName === 'all-btn'
     ? handleGetTodos()
     : handleGetTodos(targetClassName);
+
+  // ul에 className 추가
+  todoUlEl.className = `todo-list ${targetClassName}`;
 };
 
 export {
