@@ -4,18 +4,19 @@ import {
   editServerTodos,
   deleteServerTodos,
 } from '/src/api/todo.js';
-
-import { showLoading, hideLoading, showEl, hideEl } from '/src/utils/store';
-
-import renderTodoList from '/src/utils/render.js';
-
-// get
-const handleGetTodos = async (
+import {
+  showLoading,
+  hideLoading,
+  showEl,
+  hideEl,
   loadingEl,
   todoUlEl,
   emptyMessageEl,
-  filterType
-) => {
+} from '/src/utils/store';
+import renderTodoList from '/src/utils/render.js';
+
+// get
+const handleGetTodos = async (filterType) => {
   showLoading(loadingEl);
 
   try {
@@ -38,7 +39,7 @@ const handleGetTodos = async (
         : sortedData;
 
       // 조건에 따라 render
-      renderData.forEach((item) => renderTodoList(item, todoUlEl));
+      renderData.forEach((item) => renderTodoList(item));
     }
 
     hideLoading(loadingEl);
@@ -51,10 +52,7 @@ const handleGetTodos = async (
 const handleAddTodos = async (e) => {
   e.preventDefault();
   try {
-    const todoUlEl = e.target.nextSibling.nextSibling;
     const todoValue = e.target[0].value;
-    const emptyMessageEl =
-      e.target.nextElementSibling.querySelector('.empty-todo');
     // input 에 값 입력 했을 때
     if (todoValue !== '') {
       hideEl(emptyMessageEl);
@@ -63,7 +61,7 @@ const handleAddTodos = async (e) => {
       e.target[0].value = '';
       // 서버로 전송
       let data = await addServerTodos(newKeyword);
-      renderTodoList(data, todoUlEl);
+      renderTodoList(data);
     } else {
       alert('please type your Todo ⌨️ !');
     }
@@ -76,7 +74,6 @@ const handleAddTodos = async (e) => {
 const handleDeleteTodo = async (e) => {
   try {
     const todoLiEl = e.target.parentElement;
-    const emptyMessageEl = document.querySelector('.empty-todo');
     // 화면상 todo list 삭제
     todoLiEl.remove();
     // 서버상 todo list 삭제
@@ -93,11 +90,8 @@ const handleDeleteTodo = async (e) => {
 
 // edit
 const handleEditTodo = (e) => {
-  const todoUlEl = e.target.closest('ul');
   const todoLiEl = e.target.parentElement;
   const todoText = todoLiEl.querySelector('.textValue');
-  const loadingEl = document.querySelector('.loading');
-  const emptyMessageEl = document.querySelector('.empty-todo');
 
   // 수정 폼 열기
   todoLiEl.innerHTML = `<form action="GET" class="todoedit-form">
@@ -127,18 +121,17 @@ const handleEditTodo = (e) => {
     const todoLiEl = e.target.parentElement;
     const data = await editServerTodos(todoLiEl.id, text, done);
     todoLiEl.remove();
-    renderTodoList(data, todoUlEl);
+    renderTodoList(data);
   };
 
   const cancelEdit = async () => {
     todoUlEl.innerHTML = '';
-    handleGetTodos(loadingEl, todoUlEl, emptyMessageEl);
+    handleGetTodos();
   };
 };
 
 // check
 const handleCheckTodo = async (e) => {
-  const todoUlEl = e.target.closest('ul');
   const todoLiEl = e.target.parentElement;
   const data = await editServerTodos(
     todoLiEl.id,
@@ -146,7 +139,24 @@ const handleCheckTodo = async (e) => {
     e.target.checked
   );
   todoLiEl.remove();
-  renderTodoList(data, todoUlEl);
+  renderTodoList(data);
+};
+
+// filter
+const handleFilter = (e) => {
+  const targetClassName = e.target.className;
+  todoUlEl.innerHTML = '';
+  switch (targetClassName) {
+    case 'onlytodo-btn':
+      handleGetTodos('notDone');
+      break;
+    case 'onlydone-btn':
+      handleGetTodos('done');
+      break;
+    case 'all-btn':
+      handleGetTodos();
+      break;
+  }
 };
 
 export {
@@ -155,4 +165,5 @@ export {
   handleDeleteTodo,
   handleEditTodo,
   handleCheckTodo,
+  handleFilter,
 };
