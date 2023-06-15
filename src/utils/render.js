@@ -30,10 +30,10 @@ const renderTodoList = (data) => {
   todoUlEl.prepend(liEl);
 
   // init
-  const checkBtn = document.querySelector('.checkInput');
-  const todoText = document.querySelector('.textValue');
-  const editBtn = document.querySelector('.editbtn');
-  const deleteBtn = document.querySelector('.deletebtn');
+  const checkBtn = liEl.querySelector('.checkInput');
+  const todoText = liEl.querySelector('.textValue');
+  const editBtn = liEl.querySelector('.editbtn');
+  const deleteBtn = liEl.querySelector('.deletebtn');
 
   // 체크여부에 따른 텍스트 스타일 설정
   if (data.done) {
