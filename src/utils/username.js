@@ -1,43 +1,48 @@
-const username = (signinFormEl, signinInputEl, printNameEl, signoutBtn) => {
-  const HIDDEN = 'hidden';
-  const USER = 'windows95 todo-list username';
+import { welcomeEl } from '/src/utils/store';
 
-  // print user name
+const username = (signinFormEl, signinInputEl, printNameEl, signoutBtn) => {
+  const HIDDEN_CLASS = 'hidden';
+  const USER_STORAGE_KEY = 'windows95 todo-list username';
+
   const printUsername = (username) => {
     printNameEl.innerText = `${username}!!!!!!!`;
-
-    printNameEl.classList.remove(HIDDEN);
-    signoutBtn.classList.remove(HIDDEN);
+    printNameEl.classList.remove(HIDDEN_CLASS);
+    signoutBtn.classList.remove(HIDDEN_CLASS);
   };
 
-  // local storage
-  const userLocaldata = localStorage.getItem(USER);
-  if (userLocaldata) {
-    printUsername(userLocaldata);
-  } else {
-    signinFormEl.classList.remove(HIDDEN);
-  }
+  const initialize = () => {
+    const userLocaldata = localStorage.getItem(USER_STORAGE_KEY);
+    if (userLocaldata) {
+      printUsername(userLocaldata);
+      welcomeEl.innerText = "Let's do it!";
+    } else {
+      signinFormEl.classList.remove(HIDDEN_CLASS);
+      welcomeEl.innerText = 'Welcome!';
+    }
+  };
 
-  // sign in
-  signinFormEl.addEventListener('submit', (e) => {
+  const handleSignIn = (e) => {
     e.preventDefault();
-
     const username = signinInputEl.value;
-
-    localStorage.setItem(USER, username);
-    signinFormEl.classList.add(HIDDEN);
+    localStorage.setItem(USER_STORAGE_KEY, username);
+    signinFormEl.classList.add(HIDDEN_CLASS);
     printUsername(username);
-  });
+    welcomeEl.innerText = "Let's do it!";
+  };
 
-  // sign out
-  signoutBtn.addEventListener('click', () => {
-    localStorage.removeItem(USER);
-
+  const handleSignOut = () => {
+    localStorage.removeItem(USER_STORAGE_KEY);
     signinInputEl.value = '';
-    signinFormEl.classList.remove(HIDDEN);
-    printNameEl.classList.add(HIDDEN);
-    signoutBtn.classList.add(HIDDEN);
-  });
+    signinFormEl.classList.remove(HIDDEN_CLASS);
+    printNameEl.classList.add(HIDDEN_CLASS);
+    signoutBtn.classList.add(HIDDEN_CLASS);
+    welcomeEl.innerText = 'Welcome!';
+  };
+
+  initialize();
+
+  signinFormEl.addEventListener('submit', handleSignIn);
+  signoutBtn.addEventListener('click', handleSignOut);
 };
 
 export default username;

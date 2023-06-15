@@ -8,12 +8,12 @@ const HEADERS = {
   username: USERNAME,
 };
 
-//get
-const getServerTodos = async () => {
+const request = async (url, method, body = null) => {
   try {
-    const res = await fetch(TODO_BASE_URL, {
-      method: 'GET',
+    const res = await fetch(url, {
+      method,
       headers: HEADERS,
+      body: body ? JSON.stringify(body) : null,
     });
     const json = await res.json();
     return json;
@@ -21,56 +21,19 @@ const getServerTodos = async () => {
     console.log(error);
   }
 };
+
+//get
+const getServerTodos = () => request(TODO_BASE_URL, 'GET');
 
 //add
-const addServerTodos = async (title, order) => {
-  try {
-    const res = await fetch(TODO_BASE_URL, {
-      method: 'POST',
-      headers: HEADERS,
-      body: JSON.stringify({
-        title: title,
-        order: order,
-      }),
-    });
-    const json = await res.json();
-    return json;
-  } catch (error) {
-    console.log(error);
-  }
-};
+const addServerTodos = (title, order) =>
+  request(TODO_BASE_URL, 'POST', { title, order });
 
 //edit
-const editServerTodos = async (id, title, done = false, order = 0) => {
-  try {
-    const res = await fetch(`${TODO_BASE_URL}/${id}`, {
-      method: 'PUT',
-      headers: HEADERS,
-      body: JSON.stringify({
-        title: title,
-        done: done,
-        order: order,
-      }),
-    });
-    const json = await res.json();
-    return json;
-  } catch (error) {
-    console.log(error);
-  }
-};
+const editServerTodos = (id, title, done = false, order = 0) =>
+  request(`${TODO_BASE_URL}/${id}`, 'PUT', { title, done, order });
 
 //delete
-const deleteServerTodos = async (id) => {
-  try {
-    const res = await fetch(`${TODO_BASE_URL}/${id}`, {
-      method: 'DELETE',
-      headers: HEADERS,
-    });
-    const json = await res.json();
-    return json;
-  } catch (error) {
-    console.log(error);
-  }
-};
+const deleteServerTodos = (id) => request(`${TODO_BASE_URL}/${id}`, 'DELETE');
 
 export { getServerTodos, addServerTodos, editServerTodos, deleteServerTodos };

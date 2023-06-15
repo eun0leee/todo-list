@@ -10,11 +10,22 @@
 }
 
 /***************** COMMON *****************/
+* {
+  cursor: url('assets/icon_cursor_auto.svg'), auto;
+}
+
+input[type='text'] {
+  cursor: text;
+}
+
 body {
   background-color: #a585d4;
   font-family: 'DungGeunMo', 'DotGothic16', sans-serif;
   letter-spacing: 1.2px;
-  cursor: url('assets/icon_cursor.svg'), auto;
+}
+
+button {
+  cursor: url('assets/icon_cursor_auto.svg'), auto;
 }
 
 button,
@@ -66,11 +77,6 @@ textarea {
   margin-bottom: 7px;
 }
 
-.background-icon img,
-span {
-  cursor: pointer;
-}
-
 /* task-bar */
 .taskbar {
   display: flex;
@@ -103,7 +109,6 @@ span {
 
   border: 3px #fff;
   font-weight: 700;
-  cursor: pointer;
 }
 
 .taskbar-btns .startbtn {
@@ -177,7 +182,7 @@ span {
   color: #000;
   font-weight: 700;
 
-  cursor: pointer;
+  cursor: url('assets/icon_cursor_pointer.svg'), pointer;
 }
 
 /* greeting */
@@ -222,6 +227,11 @@ span {
   color: #797676;
 }
 
+.signoutbtn,
+.signinbtn {
+  cursor: url('assets/icon_cursor_pointer.svg'), pointer;
+}
+
 .greeting-box img {
   margin-right: 70px;
   width: 70px;
@@ -257,7 +267,7 @@ span {
   padding: 0 10px;
   border: 3px outset #d1d0d0;
   background-color: #b9b5b5;
-  cursor: pointer;
+  cursor: url('assets/icon_cursor_pointer.svg'), pointer;
 }
 
 .todo-form .todo-submit-input:active {
@@ -317,7 +327,7 @@ span {
 .todo-list li .editbtn,
 .deletebtn {
   font-weight: 700;
-  cursor: pointer;
+  cursor: url('assets/icon_cursor_pointer.svg'), pointer;
 }
 
 /* check box */
@@ -328,23 +338,23 @@ span {
 .todo-list li label {
   position: relative;
 
-  min-width: 12px;
-  min-height: 12px;
+  min-width: 18px;
+  min-height: 18px;
   margin-right: 20px;
   border: 2px inset #fff;
   border-radius: 50%;
   background-color: #fff;
-  cursor: pointer;
+  cursor: url('assets/icon_cursor_pointer.svg'), pointer;
 }
 
 .todo-list li .checkInput:checked + label::before {
   position: absolute;
-  top: 2px;
-  left: 2px;
+  top: 4px;
+  left: 4px;
 
   content: ' ';
-  min-width: 4px;
-  min-height: 4px;
+  min-width: 6px;
+  min-height: 6px;
   border-radius: 50%;
   background-color: #000;
 }
@@ -371,10 +381,12 @@ span {
 .todoedit-form-okbtn {
   margin-right: 8px;
   margin-bottom: 2px;
+  cursor: url('assets/icon_cursor_pointer.svg'), pointer;
 }
 
 .todoedit-form-cancelbtn {
   margin-bottom: 3px;
+  cursor: url('assets/icon_cursor_pointer.svg'), pointer;
 }
 
 /***************** WIDGETS *****************/
@@ -387,7 +399,7 @@ span {
 }
 
 .widgets-btns button {
-  cursor: pointer;
+  cursor: url('assets/icon_cursor_pointer.svg'), pointer;
 }
 
 .widgets-btns button:active {
