@@ -11,7 +11,7 @@ const HEADERS = {
 const request = async (url, method, body = null) => {
   try {
     const res = await fetch(url, {
-      method: method,
+      method,
       headers: HEADERS,
       body: body ? JSON.stringify(body) : null,
     });
