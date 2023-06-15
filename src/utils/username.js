@@ -1,3 +1,5 @@
+import { welcomeEl } from '/src/utils/store';
+
 const username = (signinFormEl, signinInputEl, printNameEl, signoutBtn) => {
   const HIDDEN_CLASS = 'hidden';
   const USER_STORAGE_KEY = 'windows95 todo-list username';
@@ -12,8 +14,10 @@ const username = (signinFormEl, signinInputEl, printNameEl, signoutBtn) => {
     const userLocaldata = localStorage.getItem(USER_STORAGE_KEY);
     if (userLocaldata) {
       printUsername(userLocaldata);
+      welcomeEl.innerText = "Let's do it!";
     } else {
       signinFormEl.classList.remove(HIDDEN_CLASS);
+      welcomeEl.innerText = 'Welcome!';
     }
   };
 
@@ -23,6 +27,7 @@ const username = (signinFormEl, signinInputEl, printNameEl, signoutBtn) => {
     localStorage.setItem(USER_STORAGE_KEY, username);
     signinFormEl.classList.add(HIDDEN_CLASS);
     printUsername(username);
+    welcomeEl.innerText = "Let's do it!";
   };
 
   const handleSignOut = () => {
@@ -31,6 +36,7 @@ const username = (signinFormEl, signinInputEl, printNameEl, signoutBtn) => {
     signinFormEl.classList.remove(HIDDEN_CLASS);
     printNameEl.classList.add(HIDDEN_CLASS);
     signoutBtn.classList.add(HIDDEN_CLASS);
+    welcomeEl.innerText = 'Welcome!';
   };
 
   initialize();
