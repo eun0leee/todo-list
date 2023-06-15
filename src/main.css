@@ -181,6 +181,8 @@ textarea {
 
   color: #000;
   font-weight: 700;
+
+  cursor: url('assets/icon_cursor_pointer.svg'), pointer;
 }
 
 /* greeting */

@@ -21,6 +21,7 @@ const todoFormEl = document.querySelector('.todo-form');
 const todoUlEl = document.querySelector('.todo-list');
 const emptyMessageEl = document.querySelector('.empty-todo');
 const filterBtn = document.querySelector('.widgets-btns');
+const titlebarBtn = document.querySelector('.titlebar-btn');
 
 export {
   showLoading,
@@ -32,4 +33,5 @@ export {
   todoUlEl,
   emptyMessageEl,
   filterBtn,
+  titlebarBtn,
 };
