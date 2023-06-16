@@ -402,7 +402,7 @@ textarea {
   cursor: url('assets/icon_cursor_pointer.svg'), pointer;
 }
 
-.widgets-btns button:active {
+.widgets-btns button:focus {
   border-style: inset;
 }
 
