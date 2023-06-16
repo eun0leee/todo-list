@@ -429,6 +429,16 @@ textarea {
   margin-right: 10px;
 }
 
+.loading-widgets {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top-color: #73797d;
+  border-radius: 50%;
+  animation: spin 2s infinite linear;
+}
+
 /***************** LOADING *****************/
 .active {
   position: fixed;
@@ -437,21 +447,19 @@ textarea {
   justify-content: center;
   align-items: center;
 
-  border: 8px solid #f3f3f3; /* Light grey */
-  border-top: 8px solid #73797d; /* Blue */
-  border-radius: 50%;
   width: 60px;
   height: 60px;
-  animation: active 2s linear infinite;
+  border: 8px solid #f3f3f3;
+
+  border-top-color: #73797d;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
 
   z-index: 9999;
 }
 
-@keyframes active {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
+@keyframes spin {
+  to {
     transform: rotate(360deg);
   }
 }

@@ -1,6 +1,10 @@
 import { getServerWeather } from '/src/api/widgets';
 
 const getWeather = async (lat, lon) => {
+  const locationEl = document.querySelector('.location');
+  const weatherEl = document.querySelector('.weather');
+  const loadingSpinners = document.querySelectorAll('.loading-widgets');
+
   // api call
   const data = await getServerWeather(lat, lon);
 
@@ -12,11 +16,12 @@ const getWeather = async (lat, lon) => {
     return element;
   };
 
-  const locationEl = document.querySelector('.location');
-  const weatherEl = document.querySelector('.weather');
-
   locationEl.append(createTextElement(data.name));
   weatherEl.append(createTextElement(data.weather[0].main));
+
+  loadingSpinners.forEach((spinner) => {
+    spinner.style.display = 'none';
+  });
 };
 
 const success = (obj) => {
