@@ -168,8 +168,6 @@ const handleFilter = (e) => {
 
   // ul에 className 추가
   todoUlEl.className = `todo-list ${targetClassName}`;
-
-  e.target.classList.toggle('clicked');
 };
 
 export {
