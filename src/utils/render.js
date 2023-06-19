@@ -12,10 +12,15 @@ const renderTodoList = (data) => {
 
   const date = new Date(`${data.updatedAt}`);
   const year = String(date.getFullYear()).slice(2);
-  const month = String(date.getMonth() + 1).padStart(2, '0');
-  const day = String(date.getDate()).padStart(2, '0');
-  const hours = String(date.getHours()).padStart(2, '0');
-  const minutes = String(date.getMinutes()).padStart(2, '0');
+  const [month, day, hours, minutes] = [
+    date.getMonth() + 1,
+    date.getDate(),
+    date.getHours(),
+    date.getMinutes(),
+  ]
+    .map(String)
+    .map((el) => el.padStart(2, '0'));
+
   const convertDate = `${year}${month}${day} ${hours}:${minutes}`;
 
   liEl.innerHTML = `
