@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ESNext", //ts 파일을 js 어떤 버전의 코드로 변환해줄지
+    "module": "ESNext", //js 파일 간 import 문법 구현시 어떤 문법 쓸지
+    // "useDefineForClassFields": true, if target is ES2022 or higher, including ESNext,
+    // "lib": ["DOM", "DOM.Iterable", "ESNext"], //js로 컴파일할 때 포함될 라이브러리 목록
+    "outDir": "./dist/", //js파일 아웃풋 경로 설정
+    "allowJs": true, //js 파일들 ts에서 import해서 쓸 수 있는지
+    "noUnusedLocals": true, //쓰지않는 지역변수 있으면 에러내기
+    "noUnusedParameters": true, //쓰지않는 파라미터 있으면 에러내기
+    "moduleResolution": "node", //모듈 해석 방법
+    "baseUrl": ".", //paths 사용시 필수
+    "paths": {
+      // 긴 상대 경로 피하는 방법
+      "@api/*": ["src/api/*"],
+      "@utils/*": ["src/utils/*"],
+      "@/*": ["src/*"]
+    },
+    "strict": true //강하게 타입을 정의. 아래 주석 처리한 옵션을 모두 활성화한 것과 같은 옵션
+    // "noImplicitAny": true, //any라는 타입이 의도치않게 발생할 경우 에러를 띄워주는 설정
+    // "strictNullChecks": true,
+    // "strictFunctionTypes": true,
+    // "strictBindCallApply": true,
+    // "strictPropertyInitialization": true,
+    // "noImplicitThis": true,
+    // "alwaysStrict": true,
+  },
+  "include": ["src", "**/*.ts"], //ts 적용할 파일 이름이나 패턴을 배열로 지정
+  "exclude": ["node_modules", "dist"] //컴파일에서 제외할 파일 및 디렉토리의 패턴
+}

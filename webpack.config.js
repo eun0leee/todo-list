@@ -10,11 +10,11 @@ const webpackMode = process.env.NODE_ENV || 'development';
 module.exports = {
   mode: webpackMode,
   entry: {
-    main: './src/main.js',
+    main: './src/main.ts',
   },
   output: {
     path: path.resolve('./dist'),
-    filename: '[name].min.js',
+    filename: 'bundle.js',
   },
   devServer: {
     liveReload: true,
@@ -52,6 +52,11 @@ module.exports = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ],
   },
   plugins: [
@@ -77,4 +82,7 @@ module.exports = {
       systemvars: true,
     }),
   ],
+  resolve: {
+    extensions: ['.tsx', '.ts', '.js'],
+  },
 };
