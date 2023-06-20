@@ -18,7 +18,7 @@ navigator.geolocation.getCurrentPosition(success, error);
 
 // username
 const signinFormEl = document.querySelector('.type-name-form');
-const signinInputEl = document.querySelector('type-name-input');
+const signinInputEl = document.querySelector('.type-name-input');
 const printNameEl = document.querySelector('.print-name');
 const signoutBtn = document.querySelector('.signoutbtn');
 username(signinFormEl, signinInputEl, printNameEl, signoutBtn);
