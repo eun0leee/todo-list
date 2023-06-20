@@ -1,5 +1,5 @@
-import '/src/reset-css.css';
-import '/src/main.css';
+import '@/reset-css.css';
+import '@/main.css';
 import clock from '@utils/clock';
 import { success, error } from '@utils/location-and-weather';
 import username from '@utils/username';
@@ -10,15 +10,21 @@ import {
   handleFilter,
 } from '@utils/handleTodo';
 
+// clock
+setInterval(clock, 1000, '.taskbar-clock');
+
+// weather and location
+navigator.geolocation.getCurrentPosition(success, error);
+
 // username
 const signinFormEl = document.querySelector('.type-name-form');
-const signinInputEl = signinFormEl.querySelector('input');
+const signinInputEl = document.querySelector('type-name-input');
 const printNameEl = document.querySelector('.print-name');
 const signoutBtn = document.querySelector('.signoutbtn');
 username(signinFormEl, signinInputEl, printNameEl, signoutBtn);
 
 // titlebarBtn
-titlebarBtn.addEventListener('click', () => {
+titlebarBtn?.addEventListener('click', () => {
   alert("can't close 😀");
 });
 
@@ -26,7 +32,7 @@ titlebarBtn.addEventListener('click', () => {
 handleGetTodos();
 
 // add
-todoFormEl.addEventListener('submit', handleAddTodos);
+todoFormEl?.addEventListener('submit', handleAddTodos);
 
 // filter
-filterBtn.addEventListener('click', handleFilter);
+filterBtn?.addEventListener('click', handleFilter);

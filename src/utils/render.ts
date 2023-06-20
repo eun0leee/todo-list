@@ -6,7 +6,9 @@ import {
 
 import { todoUlEl } from '@utils/store';
 
-const renderTodoList = (data) => {
+import { IRes } from '@/types/todo';
+
+const renderTodoList = (data: IRes) => {
   const liEl = document.createElement('li');
   liEl.id = data.id;
 
@@ -32,28 +34,30 @@ const renderTodoList = (data) => {
   <button class="deletebtn" type="button">✕</button>
   `;
 
+  if (!todoUlEl) return;
   todoUlEl.prepend(liEl);
 
   // init
-  const checkBtn = liEl.querySelector('.checkInput');
+  const checkBtn = liEl.querySelector('.checkInput') as HTMLInputElement;
   const todoText = liEl.querySelector('.textValue');
   const editBtn = liEl.querySelector('.editbtn');
   const deleteBtn = liEl.querySelector('.deletebtn');
 
   // 체크여부에 따른 텍스트 스타일 설정
   if (data.done) {
+    if (!checkBtn) return;
     checkBtn.checked = true;
-    todoText.classList.add('text-deco');
+    todoText?.classList.add('text-deco');
   }
 
   // 체크 버튼 이벤트
-  checkBtn.addEventListener('click', handleCheckTodo);
+  checkBtn?.addEventListener('click', handleCheckTodo);
 
   // 수정 버튼 이벤트
-  editBtn.addEventListener('click', handleEditTodo);
+  editBtn?.addEventListener('click', handleEditTodo);
 
   // 삭제 버튼 이벤트
-  deleteBtn.addEventListener('click', handleDeleteTodo);
+  deleteBtn?.addEventListener('click', handleDeleteTodo);
 };
 
 export default renderTodoList;

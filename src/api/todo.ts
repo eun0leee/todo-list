@@ -1,5 +1,7 @@
-const TODO_KEY = process.env.TODO_KEY;
-const TODO_BASE_URL = process.env.TODO_BASE_URL;
+import { IAddReq, IEditReq, IDelReq, IRes, IDelRes } from '@/types/todo';
+
+const TODO_KEY = process.env.TODO_KEY!;
+const TODO_BASE_URL = process.env.TODO_BASE_URL!;
 
 const USERNAME = 'KDT3_LeeEunyoung';
 const HEADERS = {
@@ -8,7 +10,11 @@ const HEADERS = {
   username: USERNAME,
 };
 
-const request = async (url, method, body = null) => {
+const request = async (
+  url: string,
+  method: string,
+  body: object | null = null
+) => {
   try {
     const res = await fetch(url, {
       method,
@@ -23,17 +29,29 @@ const request = async (url, method, body = null) => {
 };
 
 //get
-const getServerTodos = () => request(TODO_BASE_URL, 'GET');
+const getServerTodos = async () =>
+  (await request(TODO_BASE_URL, 'GET')) as IRes[];
 
 //add
-const addServerTodos = (title, order) =>
-  request(TODO_BASE_URL, 'POST', { title, order });
+const addServerTodos = async (value: IAddReq) =>
+  (await request(TODO_BASE_URL, 'POST', value)) as IRes;
 
 //edit
-const editServerTodos = (id, title, done = false, order = 0) =>
-  request(`${TODO_BASE_URL}/${id}`, 'PUT', { title, done, order });
+const editServerTodos = async ({
+  id,
+  title,
+  done = false,
+  order = 0,
+}: IEditReq) =>
+  (await request(`${TODO_BASE_URL}/${id}`, 'PUT', {
+    title,
+    done,
+    order,
+  })) as IRes;
 
 //delete
-const deleteServerTodos = (id) => request(`${TODO_BASE_URL}/${id}`, 'DELETE');
+const deleteServerTodos = async (id: IDelReq) => {
+  (await request(`${TODO_BASE_URL}/${id}`, 'DELETE')) as IDelRes;
+};
 
 export { getServerTodos, addServerTodos, editServerTodos, deleteServerTodos };
