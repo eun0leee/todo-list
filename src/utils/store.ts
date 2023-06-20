@@ -1,19 +1,19 @@
-const showLoading = (element) => {
-  element.classList.add('active');
+const showLoading = (element: Element | null) => {
+  element?.classList.add('active');
 };
 
-const hideLoading = (element) => {
-  element.classList.remove('active');
+const hideLoading = (element: Element | null) => {
+  element?.classList.remove('active');
 };
 
-const showEl = (element) => {
-  element.classList.add('show');
-  element.classList.remove('hidden');
+const showEl = (element: Element | null) => {
+  element?.classList.add('show');
+  element?.classList.remove('hidden');
 };
 
-const hideEl = (element) => {
-  element.classList.add('hidden');
-  element.classList.remove('show');
+const hideEl = (element: Element | null) => {
+  element?.classList.add('hidden');
+  element?.classList.remove('show');
 };
 
 const loadingEl = document.querySelector('.loading');
