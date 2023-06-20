@@ -6,7 +6,7 @@
     // "lib": ["DOM", "DOM.Iterable", "ESNext"], //js로 컴파일할 때 포함될 라이브러리 목록
     "outDir": "./dist/", //js파일 아웃풋 경로 설정
     "allowJs": true, //js 파일들 ts에서 import해서 쓸 수 있는지
-    "noUnusedLocals": true, //쓰지않는 지역변수 있으면 에러내기
+    // "noUnusedLocals": true, //쓰지않는 지역변수 있으면 에러내기
     "noUnusedParameters": true, //쓰지않는 파라미터 있으면 에러내기
     "moduleResolution": "node", //모듈 해석 방법
     "baseUrl": ".", //paths 사용시 필수

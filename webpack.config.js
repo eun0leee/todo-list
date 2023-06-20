@@ -8,7 +8,7 @@ const Dotenv = require('dotenv-webpack');
 const webpackMode = process.env.NODE_ENV || 'development';
 
 module.exports = {
-  mode: webpackMode,
+  mode: 'production',
   entry: {
     main: './src/main.ts',
   },
@@ -20,18 +20,15 @@ module.exports = {
     liveReload: true,
   },
   optimization: {
-    minimizer:
-      webpackMode === 'production'
-        ? [
-            new TerserPlugin({
-              terserOptions: {
-                compress: {
-                  drop_console: true,
-                },
-              },
-            }),
-          ]
-        : [],
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            drop_console: true,
+          },
+        },
+      }),
+    ],
     splitChunks: {
       chunks: 'all',
     },
@@ -40,22 +37,22 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
         exclude: /node_modules/,
       },
       {
         test: /\.js$/,
         enforce: 'pre',
-        use: ['source-map-loader'],
+        use: 'source-map-loader',
       },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.tsx?$/,
-        use: 'ts-loader',
+        test: /\.ts$/,
         exclude: /node_modules/,
+        use: 'ts-loader',
       },
     ],
   },
