@@ -2,9 +2,9 @@ import {
   handleDeleteTodo,
   handleEditTodo,
   handleCheckTodo,
-} from '/src/utils/handleTodo.js';
+} from '/src/utils/handleTodo.ts';
 
-import { todoUlEl } from '/src/utils/store';
+import { todoUlEl } from '/src/utils/store.ts';
 
 const renderTodoList = (data) => {
   const liEl = document.createElement('li');

@@ -1,4 +1,4 @@
-import { welcomeEl } from '/src/utils/store';
+import { welcomeEl } from '/src/utils/store.ts';
 
 const username = (signinFormEl, signinInputEl, printNameEl, signoutBtn) => {
   const HIDDEN_CLASS = 'hidden';

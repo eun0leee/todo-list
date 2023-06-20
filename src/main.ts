@@ -1,14 +1,14 @@
 import '/src/reset-css.css';
 import '/src/main.css';
-import clock from '/src/utils/clock.js';
-import { success, error } from '/src/utils/location-and-weather.js';
-import username from '/src/utils/username.js';
-import { todoFormEl, filterBtn, titlebarBtn } from '/src/utils/store';
+import clock from '/src/utils/clock.ts';
+import { success, error } from '/src/utils/location-and-weather.ts';
+import username from '/src/utils/username.ts';
+import { todoFormEl, filterBtn, titlebarBtn } from '/src/utils/store.ts';
 import {
   handleGetTodos,
   handleAddTodos,
   handleFilter,
-} from '/src/utils/handleTodo.js';
+} from '/src/utils/handleTodo.ts';
 
 // username
 const signinFormEl = document.querySelector('.type-name-form');
