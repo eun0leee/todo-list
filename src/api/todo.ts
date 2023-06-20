@@ -33,8 +33,8 @@ const getServerTodos = async () =>
   (await request(TODO_BASE_URL, 'GET')) as IRes[];
 
 //add
-const addServerTodos = async (value: IAddReq) =>
-  (await request(TODO_BASE_URL, 'POST', value)) as IRes;
+const addServerTodos = async ({ title, order = 0 }: IAddReq) =>
+  (await request(TODO_BASE_URL, 'POST', { title, order })) as IRes;
 
 //edit
 const editServerTodos = async ({

@@ -56,11 +56,11 @@ const handleAddTodos = async (e: any) => {
     // input 에 값 입력 했을 때
     if (todoValue !== '') {
       hideEl(emptyMessageEl);
-      const newKeyword = todoValue;
+      const title = todoValue;
       // input 값 비우기
       e.target[0].value = '';
       // 서버로 전송
-      let data = await addServerTodos(newKeyword);
+      let data = await addServerTodos({ title });
       renderTodoList(data);
     } else {
       alert('please type your Todo ⌨️ !');
