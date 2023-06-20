@@ -14,7 +14,7 @@ module.exports = {
   },
   output: {
     path: path.resolve('./dist'),
-    filename: 'bundle.js',
+    filename: '[name].min.js',
   },
   devServer: {
     liveReload: true,
@@ -83,6 +83,6 @@ module.exports = {
     }),
   ],
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.ts', '.js'],
   },
 };
