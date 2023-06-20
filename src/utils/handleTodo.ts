@@ -3,7 +3,7 @@ import {
   addServerTodos,
   editServerTodos,
   deleteServerTodos,
-} from '/src/api/todo.js';
+} from '@api/todo';
 import {
   showLoading,
   hideLoading,
@@ -12,8 +12,8 @@ import {
   loadingEl,
   todoUlEl,
   emptyMessageEl,
-} from '/src/utils/store';
-import renderTodoList from '/src/utils/render.js';
+} from '@utils/store';
+import renderTodoList from '@utils/render';
 
 // get
 const handleGetTodos = async (filterType) => {

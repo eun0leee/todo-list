@@ -1,4 +1,4 @@
-import { getServerWeather } from '/src/api/widgets';
+import { getServerWeather } from '@api/widgets';
 
 const getWeather = async (lat, lon) => {
   const locationEl = document.querySelector('.location');
