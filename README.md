@@ -1,6 +1,6 @@
 # ☑️ window95 To-do list ☑️
 
-window98 Todo-list 프로젝트는 Rest API를 사용하여 Vanilla JavaScript로 CRUD(Create, Read, Update, Delete)를 구현해보는 것을 중심으로하여, JavaScript의 메서드 및 내장함수에 익숙해지는 것 등 JavaScript로 웹페이지를 만드는데 익숙해지는 것을 목표로 만들어졌습니다. 사용자는 To-do list를 만들고 삭제하고 수정하고 조회하는 것을 해볼 수 있습니다. 추가로 Open Api를 사용하여 날씨와 지역, 시간을 볼 수 있습니다.
+window98 Todo-list 프로젝트는 Rest API를 사용하여 CRUD(Create, Read, Update, Delete)를 구현해보는 것을 중심으로하여, JavaScript의 메서드 및 내장함수에 익숙해지는 것 등 JavaScript로 웹페이지를 만드는데 익숙해지는 것을 목표로 만들어졌습니다. 사용자는 To-do list를 만들고 삭제하고 수정하고 조회하는 것을 해볼 수 있습니다. 추가로 Open Api를 사용하여 날씨와 지역, 시간을 볼 수 있습니다.
 
 ## ☑️ 사이트
 
@@ -41,7 +41,7 @@ window98 Todo-list 프로젝트는 Rest API를 사용하여 Vanilla JavaScript�
 
 - 자세한 내용은 블로그 포스팅에서 보실 수 있습니다
   - [Vaniila JS로 To-do 사이트 만들기(CRUD 구현, Rest API 활용)](https://velog.io/@eun0leee/todo)
-  - [Vaniila JS로 만든 To-do 사이트, 리팩토링](https://velog.io/@eun0leee/Vaniila-JS로-만든-To-do-사이트-리팩토링)
+  - [Vaniila JS로 만든 To-do 사이트, 리팩토링(Webpack, TS 도입)](https://velog.io/@eun0leee/Vaniila-JS로-만든-To-do-사이트-리팩토링)
 - 주요 구현 내용 포스팅
   - [[JS] Vanilla JS로 To-do 사이트 만들 때, API 연동하기(fetch 방식)](https://velog.io/@eun0leee/JS-To-do-사이트-만들-때-API-연동하기)
   - [[JS] Vanilla JS로 To-do list 수정 구현하기](https://velog.io/@eun0leee/JS-Vanilla-JS로-To-do-list-수정-구현하기)
